@@ -4,11 +4,13 @@ const About = ({ title, description, ...props }) => {
   return (
     <>
       <Layout pageTitle={`${title} | About`} description={description}>
-        <h1 className="title">Who is this guy and what does he do anyways?</h1>
+        <h1 className="title">
+          Who is Rodrigo Villalba and what does he do anyways?
+        </h1>
 
         <p>
-          A software developer from Paraguay. Has worked fullstack but now
-          focusing on web development with React.
+          A software developer from Paraguay. Focusing now on web development
+          and React but has also worked fullstack.
         </p>
       </Layout>
     </>
