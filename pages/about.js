@@ -4,15 +4,11 @@ const About = ({ title, description, ...props }) => {
   return (
     <>
       <Layout pageTitle={`${title} | About`} description={description}>
-        <h1 className="title">Welcome to my blog!</h1>
-
-        <p className="description">
-          {description}
-        </p>
+        <h1 className="title">Who is this guy and what does he do anyways?</h1>
 
         <p>
-          I am a very exciting person. I know this because I'm following a very
-          exciting tutorial, and a not-exciting person wouldn't do that.
+          A software developer from Paraguay. Has worked fullstack but now
+          focusing on web development with React.
         </p>
       </Layout>
     </>
