@@ -1,17 +1,17 @@
 import Layout from "../components/Layout";
-
+import { Heading, Text } from "@chakra-ui/core";
 const About = ({ title, description, ...props }) => {
   return (
     <>
       <Layout pageTitle={`${title} | About`} description={description}>
-        <h1 className="title">
+        <Heading fontSize="xl" className="title">
           Who is Rodrigo Villalba and what does he do anyways?
-        </h1>
+        </Heading>
 
-        <p>
-          A software developer from Paraguay. Focusing now on web development
-          and React but has also worked fullstack.
-        </p>
+        <Text mt={4}>
+          A software developer from Paraguay. Specializing on web development ,
+          React and JavaScript ecosystems.
+        </Text>
       </Layout>
     </>
   );
