@@ -51,7 +51,7 @@ const About = ({ title, description, ...props }) => {
             <Text>
               When he is not being technical, Rodrigo enjoys spending time
               running, meditating and reading. His favorite type of books are
-              the mind expanding ones and autobiographies.
+              the mind expanding ones and memoirs.
             </Text>
             <Text>
               He also loves playing the guitar and watching movies and TV shows.
@@ -62,7 +62,6 @@ const About = ({ title, description, ...props }) => {
               <Link isExternal href="https://twitter.com/rodrigoj_el">
                 Twitter
               </Link>{" "}
-              where he tries to stay very active and amuse himself being lame.
             </Text>
             <Text>Cheers! ❤️</Text>
           </Stack>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
-
+import { Box } from "@chakra-ui/core";
 import Layout from "../../components/Layout";
 
 export default function BlogPost({
@@ -15,16 +15,16 @@ export default function BlogPost({
   return (
     <>
       <Layout pageTitle={`${siteTitle} | ${frontmatter.title}`} url={url}>
-        <Link href="/">
+        <Link href="/blog">
           <a>Back to post list</a>
         </Link>
-        <article>
+        <Box w="100%" maxW="960px" mx="auto">
           <h1>{frontmatter.title}</h1>
           <p>By {frontmatter.author}</p>
-          <div>
+          <Box mt={8}>
             <ReactMarkdown source={markdownBody} />
-          </div>
-        </article>
+          </Box>
+        </Box>
       </Layout>
       <style jsx>{`
         article {

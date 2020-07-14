@@ -2,14 +2,15 @@ import matter from "gray-matter";
 import Layout from "../components/Layout";
 import NextLink from "next/link";
 import { FaGithub } from "react-icons/fa";
-import { Stack, Box, Link, Flex } from "@chakra-ui/core";
+import { Stack, Box, Link, Flex, Text } from "@chakra-ui/core";
 
 const Index = ({ posts, title, description, ...props }) => {
   return (
     <Layout pageTitle={title}>
       <Box
-        boxShadow="xl"
-        rounded="md"
+        border="3px solid #222121"
+        borderRadius="20px"
+        boxShadow="inset 0px 0px 10px 10px #000"
         w="100%"
         maxW="960px"
         mx="auto"
@@ -22,8 +23,17 @@ const Index = ({ posts, title, description, ...props }) => {
         py={8}
       >
         <Stack spacing={8}>
-          <Box textAlign="center">Initializing...</Box>
-          <Box>
+          <p>Initializing Web Site</p>
+          <p
+            style={{
+              width: "100%",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+            }}
+          >
+            ...........................................................................
+          </p>
+          <Box mt={4}>
             <p>>Who is Rodrigo Villalba and what does he do anyways?</p>
             <p>Loading results...</p>
             <p>
