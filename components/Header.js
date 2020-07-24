@@ -1,60 +1,51 @@
 import Link from "next/link";
-import { Flex } from "@chakra-ui/core";
-
-function HeaderLink({ children, ...restProps }) {
-  return (
-    <>
-      <style jsx>{`
-        a {
-          margin-right: 20px;
-          color: #00a395;
-          text-decoration: none;
-        }
-        a:hover {
-          text-decoration: underline;
-        }
-      `}</style>
-      <Link {...restProps}>{children}</Link>
-    </>
-  );
-}
+import { Flex, Box } from "@chakra-ui/core";
 
 export default function Header() {
   return (
     <>
-      <header className="header">
+      <header>
         <Flex justify="space-around" w="calc(100% - 40px)" mx="auto">
-          <HeaderLink href="/">
-            <a>Rodrigo Villalba</a>
-          </HeaderLink>
-          <Flex as="nav" justify="space-between">
-            <HeaderLink href="/blog">
-              <a>Blog</a>
-            </HeaderLink>
-            <HeaderLink href="/about">
-              <a>About</a>
-            </HeaderLink>
-          </Flex>
+          <Link href="/">
+            <a className="brand">Rodrigo Villalba</a>
+          </Link>
+          <Box className="navbar">
+            <nav className="navbar">
+              <Link href="/blog">
+                <a>Blog</a>
+              </Link>
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+            </nav>
+          </Box>
         </Flex>
       </header>
       <style jsx>{`
         header {
+          background-color: #b6b6b6;
           width: 100%;
-          height: 100px;
-          border-bottom: 1px solid #eaeaea;
           display: flex;
           justify-content: center;
           align-items: center;
+          padding: 1.5rem 0;
         }
-        header a {
-          font-weight: bold;
-          font-size: 1.3rem;
-          margin-right: 20px;
-          color: #00a395;
+        .navbar a {
+          font-weight: 400;
+          font-size: 1.1rem;
+          margin: 0 0.25rem;
+          padding: 1rem 1.5rem;
+          color: #faf8ff;
           text-decoration: none;
+          border-radius: 0.3rem;
         }
-        header a:hover {
-          text-decoration: underline;
+        .navbar a:hover {
+          background-color: #ababab;
+        }
+        .brand {
+          font-weight: 600;
+          color: #faf8ff;
+          font-size: 1.3rem;
         }
       `}</style>
     </>

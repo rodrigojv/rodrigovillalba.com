@@ -1,11 +1,12 @@
 import Layout from "../components/Layout";
-import { Heading, Text, Link, Box, Stack } from "@chakra-ui/core";
+import MainContentBox from "../components/MainContentBox";
+import { Heading, Text, Link, Stack } from "@chakra-ui/core";
 
 const About = ({ title, description, ...props }) => {
   return (
     <>
       <Layout pageTitle={`${title} | About`} description={description}>
-        <Box w="100%" maxW="960px" mx="auto">
+        <MainContentBox>
           <Stack spacing={3}>
             <Heading>
               Who is Rodrigo Villalba and what does he do anyways?
@@ -65,12 +66,11 @@ const About = ({ title, description, ...props }) => {
             </Text>
             <Text>Cheers! ❤️</Text>
           </Stack>
-        </Box>
+        </MainContentBox>
       </Layout>
     </>
   );
 };
-
 export default About;
 
 export async function getStaticProps() {

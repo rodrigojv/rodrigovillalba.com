@@ -1,18 +1,21 @@
 import matter from "gray-matter";
 import Layout from "../components/Layout";
 import PostList from "../components/PostList";
+import MainContentBox from "../components/MainContentBox";
 
 const Index = ({ posts, title, description, ...props }) => {
   return (
     <Layout pageTitle={title}>
-      <h1 className="title">Welcome to my blog!</h1>
-      <p className="description">
-        🚧This blog is under construction. Stay tuned for more useful content
-        soon.
-      </p>
-      <main>
-        <PostList posts={posts} />
-      </main>
+      <MainContentBox>
+        <h1 className="title">Welcome to my blog!</h1>
+        <p className="description">
+          🚧This blog is under construction. Stay tuned for more useful content
+          soon.
+        </p>
+        <main>
+          <PostList posts={posts} />
+        </main>
+      </MainContentBox>
     </Layout>
   );
 };

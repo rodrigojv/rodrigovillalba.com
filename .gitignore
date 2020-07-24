@@ -17,6 +17,7 @@
 
 # misc
 .DS_Store
+*.zip
 
 # debug
 npm-debug.log*
