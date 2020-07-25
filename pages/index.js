@@ -82,7 +82,10 @@ const Index = ({ posts, title, description, ...props }) => {
         .lead {
           background-color: #b6b6b6;
           align-items: center;
-          padding: 4rem 0;
+          padding-left: 4rem;
+          padding-right: 4rem;
+          padding-bottom: 2.75rem;
+          padding-top: 0.75rem;
         }
         p {
           line-height: 2rem;
@@ -102,6 +105,11 @@ const Index = ({ posts, title, description, ...props }) => {
 
           100% {
             opacity: 0.15;
+          }
+        }
+        @media screen and (min-width: 800px) {
+          .lead {
+            padding: 4rem 0;
           }
         }
       `}</style>

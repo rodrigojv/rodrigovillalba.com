@@ -5,7 +5,11 @@ export default function Header() {
   return (
     <>
       <header>
-        <Flex justify="space-around" w="calc(100% - 40px)" mx="auto">
+        <Flex
+          justify={["space-between", "space-around"]}
+          w={["calc(100% - 120px)", "calc(100% - 40px)"]}
+          mx="auto"
+        >
           <Link href="/">
             <a className="brand">Rodrigo Villalba</a>
           </Link>
@@ -32,20 +36,34 @@ export default function Header() {
         }
         .navbar a {
           font-weight: 400;
-          font-size: 1.1rem;
-          margin: 0 0.25rem;
+          font-size: 1rem;
           padding: 1rem 1.5rem;
+          margin: 0 0.25rem;
           color: #faf8ff;
           text-decoration: none;
           border-radius: 0.3rem;
         }
+
+        a.brand {
+          font-weight: 600;
+          color: #faf8ff;
+          font-size: 1rem;
+        }
+
         .navbar a:hover {
           background-color: #ababab;
         }
-        .brand {
-          font-weight: 600;
-          color: #faf8ff;
-          font-size: 1.3rem;
+
+        @media screen and (min-width: 800px) {
+          .navbar a {
+            font-size: 1.3rem;
+            margin: 0 0.25rem;
+            padding: 1rem 1.5rem;
+          }
+          a.brand {
+            font-size: 1.3rem;
+            margin-right: 3rem;
+          }
         }
       `}</style>
     </>
