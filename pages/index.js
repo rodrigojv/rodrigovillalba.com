@@ -82,8 +82,8 @@ const Index = ({ posts, title, description, ...props }) => {
         .lead {
           background-color: #b6b6b6;
           align-items: center;
-          padding-left: 4rem;
-          padding-right: 4rem;
+          padding-left: 2rem;
+          padding-right: 2rem;
           padding-bottom: 2.75rem;
           padding-top: 0.75rem;
         }

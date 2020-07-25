@@ -7,7 +7,7 @@ export default function Header() {
       <header>
         <Flex
           justify={["space-between", "space-around"]}
-          w={["calc(100% - 120px)", "calc(100% - 40px)"]}
+          w={["calc(100% - 60px)", "calc(100% - 40px)"]}
           mx="auto"
         >
           <Link href="/">
@@ -37,8 +37,7 @@ export default function Header() {
         .navbar a {
           font-weight: 400;
           font-size: 1rem;
-          padding: 1rem 1.5rem;
-          margin: 0 0.25rem;
+          padding: 1rem 0.5rem;
           color: #faf8ff;
           text-decoration: none;
           border-radius: 0.3rem;
