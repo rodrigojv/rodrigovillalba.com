@@ -1,13 +1,13 @@
 import Layout from "../components/Layout";
-import MainContentBox from "../components/MainContentBox";
+import Container from "../components/Container";
 import { Heading, Text, Link, Stack } from "@chakra-ui/core";
 
 const About = ({ title, description, ...props }) => {
   return (
     <>
       <Layout pageTitle={`${title} | About`} description={description}>
-        <MainContentBox>
-          <Stack spacing={3}>
+        <Container>
+          <Stack spacing={3} py={6}>
             <Heading>
               Who is Rodrigo Villalba and what does he do anyways?
             </Heading>
@@ -66,7 +66,7 @@ const About = ({ title, description, ...props }) => {
             </Text>
             <Text>Cheers! ❤️</Text>
           </Stack>
-        </MainContentBox>
+        </Container>
       </Layout>
     </>
   );
