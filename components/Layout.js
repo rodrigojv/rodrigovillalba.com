@@ -13,7 +13,30 @@ export default function Layout({ children, pageTitle, url, ...props }) {
       </Head>
       <style jsx global>
         {`
-          @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;700;800;900&display=swap");
+          @font-face {
+            font-family: "IBM Plex Mono";
+            src: url("/fonts/IBMPlexMono-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+          }
+
+          /* IBM PlexMono italic */
+
+          @font-face {
+            font-family: "IBM Plex Mono";
+            src: url("/fonts/IBMPlexMono-Italic.ttf") format("truetype");
+            font-weight: 400;
+            font-style: italic;
+          }
+
+          /* IBM PlexMono bold */
+
+          @font-face {
+            font-family: "IBM Plex Mono";
+            src: url("/fonts/IBMPlexMono-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+          }
           html,
           body {
             color: #445566;

@@ -1,4 +1,6 @@
-module.exports = {
+const withFonts = require("next-fonts");
+
+module.exports = withFonts({
   target: "serverless",
   webpack: function (config) {
     config.module.rules.push({
@@ -7,4 +9,4 @@ module.exports = {
     });
     return config;
   },
-};
+});
