@@ -1,39 +1,37 @@
 import Link from "next/link";
 import { Flex, Box } from "@chakra-ui/core";
+import Container from "./Container";
 
 export default function Header() {
   return (
     <>
-      <header>
-        <Flex
-          justify={["space-between", "space-around"]}
-          w={["calc(100% - 60px)", "calc(100% - 40px)"]}
-          mx="auto"
-        >
-          <Link href="/">
-            <a className="brand">Rodrigo Villalba</a>
-          </Link>
-          <Box className="navbar">
-            <nav className="navbar">
-              <Link href="/blog">
-                <a>Blog</a>
-              </Link>
-              <Link href="/about">
-                <a>About</a>
-              </Link>
-            </nav>
-          </Box>
-        </Flex>
-      </header>
+      <Flex
+        as="header"
+        w="100%"
+        justify="center"
+        align="center"
+        py={6}
+        backgroundColor="screencase"
+      >
+        <Container>
+          <Flex justify="space-between">
+            <Link href="/">
+              <a className="brand">Rodrigo Villalba</a>
+            </Link>
+            <Box className="navbar">
+              <nav className="navbar">
+                <Link href="/blog">
+                  <a>Blog</a>
+                </Link>
+                <Link href="/about">
+                  <a>About</a>
+                </Link>
+              </nav>
+            </Box>
+          </Flex>
+        </Container>
+      </Flex>
       <style jsx>{`
-        header {
-          background-color: #b6b6b6;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 1.5rem 0;
-        }
         .navbar a {
           font-weight: 400;
           font-size: 1rem;
