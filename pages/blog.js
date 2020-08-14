@@ -1,21 +1,32 @@
 import matter from "gray-matter";
 import Layout from "../components/Layout";
 import PostList from "../components/PostList";
-import MainContentBox from "../components/MainContentBox";
+import Container from "../components/Container";
+import { Heading, Text, Box, Stack } from "@chakra-ui/core";
 
-const Index = ({ posts, title, description, ...props }) => {
+const Index = ({ posts, title }) => {
   return (
     <Layout pageTitle={title}>
-      <MainContentBox>
-        <h1 className="title">Welcome to my blog!</h1>
-        <p className="description">
-          🚧This blog is under construction. Stay tuned for more useful content
-          soon.
-        </p>
-        <main>
+      <header>
+        <Container textAlign="center">
+          <Stack spacing={6}>
+            <Heading>Blog</Heading>
+            <Text fontWeight="medium" fontSize="lg">
+              Words and thoughts about software development, productivity and
+              other wholesome topics
+            </Text>
+            <Text>
+              🚧This blog is under construction. Stay tuned for more useful
+              content soon.
+            </Text>
+          </Stack>
+        </Container>
+      </header>
+      <Box as="section" mt={8}>
+        <Container>
           <PostList posts={posts} />
-        </main>
-      </MainContentBox>
+        </Container>
+      </Box>
     </Layout>
   );
 };
