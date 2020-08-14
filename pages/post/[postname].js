@@ -3,6 +3,7 @@ import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import { Box } from "@chakra-ui/core";
 import Layout from "../../components/Layout";
+import Container from "../../components/Container";
 
 export default function BlogPost({
   siteTitle,
@@ -15,34 +16,21 @@ export default function BlogPost({
   return (
     <>
       <Layout pageTitle={`${siteTitle} | ${frontmatter.title}`} url={url}>
-        <Link href="/blog">
-          <a>Back to post list</a>
-        </Link>
-        <Box w="100%" maxW="960px" mx="auto">
-          <h1>{frontmatter.title}</h1>
-          <p>By {frontmatter.author}</p>
-          <Box mt={8}>
-            <ReactMarkdown source={markdownBody} />
-          </Box>
-        </Box>
+        <Container>
+          <article>
+            <header>
+              <Link href="/blog">
+                <a>Back to post list</a>
+              </Link>
+              <h1>{frontmatter.title}</h1>
+              <p>By {frontmatter.author}</p>
+            </header>
+            <Box mt={8} px={4}>
+              <ReactMarkdown source={markdownBody} />
+            </Box>
+          </article>
+        </Container>
       </Layout>
-      <style jsx>{`
-        article {
-          width: 100%;
-          max-width: 1200px;
-        }
-        h1 {
-          font-size: 3rem;
-        }
-        h3 {
-          font-size: 2rem;
-        }
-        .back {
-          width: 100%;
-          max-width: 1200px;
-          color: #00a395;
-        }
-      `}</style>
     </>
   );
 }
