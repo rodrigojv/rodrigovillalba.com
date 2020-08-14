@@ -2,12 +2,12 @@ import matter from "gray-matter";
 import Layout from "../components/Layout";
 import NextLink from "next/link";
 import { FaGithub } from "react-icons/fa";
-import { Stack, Box, Link, Flex, Text } from "@chakra-ui/core";
+import { Stack, Box, Link, Flex } from "@chakra-ui/core";
 
 const Index = ({ posts, title, description, ...props }) => {
   return (
-    <Layout pageTitle={title}>
-      <div className="lead">
+    <Layout pageTitle={title} mt={0}>
+      <Box backgroundColor="screencase" alignItems="center" px={8} py={8}>
         <Box
           border="3px solid #222121"
           borderRadius="20px"
@@ -22,6 +22,7 @@ const Index = ({ posts, title, description, ...props }) => {
           textShadow="0 0 5px #EBF8FF, 0 0 7px #EBF8FF, 0 0 12px #EBF8FF"
           px={8}
           py={8}
+          fontFamily="heading"
         >
           <Stack spacing={8}>
             <p>Initializing Web Site</p>
@@ -76,11 +77,10 @@ const Index = ({ posts, title, description, ...props }) => {
             </Box>
           </Stack>
         </Box>
-      </div>
+      </Box>
 
       <style jsx>{`
         .lead {
-          background-color: #b6b6b6;
           align-items: center;
           padding-left: 2rem;
           padding-right: 2rem;
