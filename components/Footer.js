@@ -1,10 +1,17 @@
-import { Link, Stack } from "@chakra-ui/core";
+import { Link, Stack, Flex } from "@chakra-ui/core";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <>
-      <footer>
+      <Flex
+        as="footer"
+        w="100%"
+        height="100px"
+        borderTop="1px solid #eaeaea"
+        justify="center"
+        align="center"
+      >
         <Stack isInline={true}>
           <Link
             isRound={true}
@@ -31,19 +38,7 @@ export default function Footer() {
             <FaLinkedin />
           </Link>
         </Stack>
-      </footer>
-      <style jsx>
-        {`
-          footer {
-            width: 100%;
-            height: 100px;
-            border-top: 1px solid #eaeaea;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        `}
-      </style>
+      </Flex>
     </>
   );
 }
