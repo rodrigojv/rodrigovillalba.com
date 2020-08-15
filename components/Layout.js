@@ -15,7 +15,7 @@ export default function Layout({ children, pageTitle, url, ...props }) {
         {`
           @font-face {
             font-family: "IBM Plex Mono";
-            src: url("/fonts/IBMPlexMono-Regular.ttf") format("truetype");
+            src: url("/fonts/IBMPlexMono-Regular.ttf");
             font-weight: 400;
             font-style: normal;
           }
@@ -24,7 +24,7 @@ export default function Layout({ children, pageTitle, url, ...props }) {
 
           @font-face {
             font-family: "IBM Plex Mono";
-            src: url("/fonts/IBMPlexMono-Italic.ttf") format("truetype");
+            src: url("/fonts/IBMPlexMono-Italic.ttf");
             font-weight: 400;
             font-style: italic;
           }
@@ -33,7 +33,7 @@ export default function Layout({ children, pageTitle, url, ...props }) {
 
           @font-face {
             font-family: "IBM Plex Mono";
-            src: url("/fonts/IBMPlexMono-Bold.ttf") format("truetype");
+            src: url("/fonts/IBMPlexMono-Bold.ttf");
             font-weight: 700;
             font-style: normal;
           }
