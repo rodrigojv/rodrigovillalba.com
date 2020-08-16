@@ -1,23 +1,26 @@
 import Link from "next/link";
-
+import { List, ListItem, Heading } from "@chakra-ui/core";
 export default function PostList({ posts }) {
-  if (posts === "undefined") return null;
-
+  if (posts === "undefined") {
+    return null;
+  }
   return (
     <div>
       {!posts && <div>No posts!</div>}
-      <ul>
+      <List spacing={6}>
         {posts &&
           posts.map((post) => {
             return (
-              <li key={post.slug}>
-                <Link href={{ pathname: `/post/${post.slug}` }}>
-                  <a>{post.frontmatter.title}</a>
-                </Link>
-              </li>
+              <ListItem key={post.slug}>
+                <Heading as="h3" size="lg">
+                  <Link href={{ pathname: `/post/${post.slug}` }}>
+                    <a>{post.frontmatter.title}</a>
+                  </Link>
+                </Heading>
+              </ListItem>
             );
           })}
-      </ul>
+      </List>
     </div>
   );
 }

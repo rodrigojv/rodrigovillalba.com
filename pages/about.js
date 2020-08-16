@@ -7,15 +7,16 @@ const About = ({ title, description, ...props }) => {
     <>
       <Layout pageTitle={`${title} | About`} description={description}>
         <Container>
-          <Stack spacing={3} py={6}>
-            <Heading>
-              Who is Rodrigo Villalba and what does he do anyways?
+          <Heading textAlign="center">About</Heading>
+          <Stack spacing={4} py={6}>
+            <Heading as="h2" size="lg">
+              Who is Rodrigo Villalba?
             </Heading>
             <Text>
               A software developer from Paraguay. Specializing on web
               development, React and JavaScript ecosystems.
             </Text>
-            <Heading mt={4} as="h2" size="lg">
+            <Heading as="h2" size="lg">
               So, tell me more about this guy
             </Heading>
             <Text>
