@@ -15,7 +15,7 @@ export default function BlogPost({
   return (
     <>
       <Layout pageTitle={`${siteTitle} | ${frontmatter.title}`} url={url}>
-        <Container>
+        <Container maxW="800px">
           <article>
             <header>
               <Link href="/blog">
