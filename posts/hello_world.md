@@ -1,6 +1,7 @@
 ---
 title: "Hello, world!"
 author: "Rodrigo Villalba"
+tags: ["markdown", "reactjs"]
 ---
 
 This is just a test post using markdown although you can't see ;)
@@ -9,6 +10,10 @@ This is just a test post using markdown although you can't see ;)
 - I am in a list
 - Woo hoo
 
-```js
-<React>
+```jsx
+const trying = "this out";
+
+function App() {
+  return <p>{trying}</p>;
+}
 ```

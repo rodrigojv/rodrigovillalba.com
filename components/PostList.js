@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { List, ListItem, Heading } from "@chakra-ui/core";
+import { List, ListItem, Heading, Stack, Tag } from "@chakra-ui/core";
 export default function PostList({ posts }) {
   if (posts === "undefined") {
     return null;
@@ -17,6 +17,15 @@ export default function PostList({ posts }) {
                     <a>{post.frontmatter.title}</a>
                   </Link>
                 </Heading>
+                {post.frontmatter.tags && (
+                  <Stack mt={2} spacing={4} isInline>
+                    {post.frontmatter.tags.map((tag) => (
+                      <Tag size="md" key={tag} variantColor="blue">
+                        {tag}
+                      </Tag>
+                    ))}
+                  </Stack>
+                )}
               </ListItem>
             );
           })}

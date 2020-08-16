@@ -5,7 +5,7 @@ import { Heading, Text, Link, Stack } from "@chakra-ui/core";
 const About = ({ title, description, ...props }) => {
   return (
     <>
-      <Layout pageTitle={`${title} | About`} description={description}>
+      <Layout pageTitle={`About | ${title}`} description={description}>
         <Container>
           <Heading textAlign="center">About</Heading>
           <Stack spacing={4} py={6}>

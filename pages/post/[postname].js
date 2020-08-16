@@ -1,10 +1,9 @@
 import Link from "next/link";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
-import { Box } from "@chakra-ui/core";
+import { Box, Heading, Text, Icon } from "@chakra-ui/core";
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
-
 export default function BlogPost({
   siteTitle,
   frontmatter,
@@ -20,12 +19,15 @@ export default function BlogPost({
           <article>
             <header>
               <Link href="/blog">
-                <a>Back to post list</a>
+                <a>
+                  <Icon name="chevron-left" />
+                  <span>Back to post list</span>
+                </a>
               </Link>
-              <h1>{frontmatter.title}</h1>
-              <p>By {frontmatter.author}</p>
+              <Heading mt={4}>{frontmatter.title}</Heading>
+              <Text>By {frontmatter.author}</Text>
             </header>
-            <Box mt={8} px={4}>
+            <Box mt={4} px={4} py={6}>
               <ReactMarkdown source={markdownBody} />
             </Box>
           </article>

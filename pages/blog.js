@@ -6,7 +6,7 @@ import { Heading, Text, Box, Stack } from "@chakra-ui/core";
 
 const Index = ({ posts, title }) => {
   return (
-    <Layout pageTitle={`${title} | Blog`}>
+    <Layout pageTitle={`Blog | ${title}`}>
       <header>
         <Container textAlign="center">
           <Stack spacing={6}>
@@ -15,16 +15,16 @@ const Index = ({ posts, title }) => {
               Words and thoughts about software development, productivity and
               other wholesome topics
             </Text>
-            <Text>
-              🚧This blog is under construction. Stay tuned for more useful
-              content soon.
-            </Text>
           </Stack>
         </Container>
       </header>
       <Box as="section" mt={8}>
         <Container>
           <PostList posts={posts} />
+          <Text textAlign="center" mt={4} py={4}>
+            🚧This blog is under construction. More useful content is coming
+            soon, stay tuned
+          </Text>
         </Container>
       </Box>
     </Layout>
