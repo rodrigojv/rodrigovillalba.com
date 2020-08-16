@@ -1,57 +1,47 @@
-import { ThemeProvider, CSSReset, theme } from "@chakra-ui/core";
+import {
+  ThemeProvider,
+  CSSReset,
+  ColorModeProvider,
+  theme,
+} from "@chakra-ui/core";
+import { Global, css } from "@emotion/core";
 
 const customTheme = {
   ...theme,
   fonts: {
     ...theme.fonts,
-    heading: "IBM Plex Mono",
+    heading: '"IBM Plex Mono", monospace',
   },
   colors: {
     ...theme.colors,
     screencase: "#b6b6b6",
   },
 };
-
-const App = ({ Component, pageProps }) => {
+const GlobalStyle = ({ children }) => {
   return (
-    <ThemeProvider theme={customTheme}>
+    <>
       <CSSReset />
-      <Component {...pageProps} />
-      <style jsx global>
-        {`
-          @font-face {
-            font-family: "IBM Plex Mono";
-            src: url("/fonts/IBMPlexMono-Regular.ttf");
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-          }
-
-          /* IBM PlexMono italic */
-
-          @font-face {
-            font-family: "IBM Plex Mono";
-            src: url("/fonts/IBMPlexMono-Italic.ttf");
-            font-weight: 400;
-            font-style: italic;
-            font-display: swap;
-          }
-
-          /* IBM PlexMono bold */
-
-          @font-face {
-            font-family: "IBM Plex Mono";
-            src: url("/fonts/IBMPlexMono-Bold.ttf");
-            font-weight: 700;
-            font-style: normal;
-            font-display: fallback;
-          }
+      <Global
+        styles={css`
           html,
           body {
             color: #445566;
           }
         `}
-      </style>
+      />
+      {children}
+    </>
+  );
+};
+
+const App = ({ Component, pageProps }) => {
+  return (
+    <ThemeProvider theme={customTheme}>
+      <ColorModeProvider value="light">
+        <GlobalStyle>
+          <Component {...pageProps} />
+        </GlobalStyle>
+      </ColorModeProvider>
     </ThemeProvider>
   );
 };
