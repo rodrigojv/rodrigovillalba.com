@@ -4,6 +4,8 @@ import ReactMarkdown from "react-markdown";
 import { Box, Heading, Text, Icon } from "@chakra-ui/core";
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
+import Code from "../../components/Code";
+
 export default function BlogPost({
   siteTitle,
   frontmatter,
@@ -28,7 +30,7 @@ export default function BlogPost({
               <Text>By {frontmatter.author}</Text>
             </header>
             <Box mt={4} px={4} py={6}>
-              <ReactMarkdown source={markdownBody} />
+              <ReactMarkdown source={markdownBody} renderers={{ code: Code }} />
             </Box>
           </article>
         </Container>
