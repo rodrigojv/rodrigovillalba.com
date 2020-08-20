@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { List, ListItem, Heading, Stack, Tag } from "@chakra-ui/core";
+import {
+  List,
+  ListItem,
+  Heading,
+  Stack,
+  Tag,
+  Box,
+  Flex,
+} from "@chakra-ui/core";
 export default function PostList({ posts }) {
   if (posts === "undefined") {
     return null;
@@ -11,21 +19,30 @@ export default function PostList({ posts }) {
         {posts &&
           posts.map((post) => {
             return (
-              <ListItem key={post.slug}>
-                <Heading as="h3" size="lg">
-                  <Link href={{ pathname: `/post/${post.slug}` }}>
-                    <a>{post.frontmatter.title}</a>
-                  </Link>
-                </Heading>
-                {post.frontmatter.tags && (
-                  <Stack mt={2} spacing={4} isInline>
-                    {post.frontmatter.tags.map((tag) => (
-                      <Tag size="md" key={tag} variantColor="blue">
-                        {tag}
-                      </Tag>
-                    ))}
-                  </Stack>
-                )}
+              <ListItem
+                key={post.slug}
+                boxShadow="md"
+                borderRadius="md"
+                padding={4}
+              >
+                <Flex justifyContent="space-between" align="center">
+                  <Heading as="h3" size="lg">
+                    <Link href={{ pathname: `/post/${post.slug}` }}>
+                      <a>{post.frontmatter.title}</a>
+                    </Link>
+                  </Heading>
+                  <Box>
+                    {post.frontmatter.tags && (
+                      <Stack mt={2} spacing={4} isInline>
+                        {post.frontmatter.tags.map((tag) => (
+                          <Tag size="md" key={tag} variantColor="blue">
+                            {tag}
+                          </Tag>
+                        ))}
+                      </Stack>
+                    )}
+                  </Box>
+                </Flex>
               </ListItem>
             );
           })}
