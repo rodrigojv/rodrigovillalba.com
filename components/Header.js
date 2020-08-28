@@ -15,9 +15,11 @@ export default function Header() {
       >
         <Container>
           <Flex justify="space-between">
-            <Link href="/">
-              <a className="brand">Rodrigo Villalba</a>
-            </Link>
+            <Box>
+              <Link href="/">
+                <a className="brand">Rodrigo Villalba</a>
+              </Link>
+            </Box>
             <Box className="navbar">
               <nav className="navbar">
                 <Link href="/blog">
@@ -35,9 +37,9 @@ export default function Header() {
         .navbar a {
           font-weight: 400;
           font-size: 1rem;
-          padding: 1rem 0.5rem;
           color: #faf8ff;
           text-decoration: none;
+          padding: 1rem 0.5rem;
           border-radius: 0.3rem;
         }
 
@@ -45,9 +47,12 @@ export default function Header() {
           font-weight: 600;
           color: #faf8ff;
           font-size: 1rem;
+          padding: 1rem 0.5rem;
+          border-radius: 0.3rem;
         }
 
-        .navbar a:hover {
+        .navbar a:hover,
+        a.brand:hover {
           background-color: #ababab;
         }
 

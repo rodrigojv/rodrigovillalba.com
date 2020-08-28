@@ -2,9 +2,10 @@ import matter from "gray-matter";
 import Layout from "../components/Layout";
 import NextLink from "next/link";
 import { FaGithub } from "react-icons/fa";
-import { Stack, Box, Link, Flex } from "@chakra-ui/core";
+import { Stack, Box, Link, Flex, useTheme } from "@chakra-ui/core";
 
 const Index = ({ posts, title, description, ...props }) => {
+  const theme = useTheme();
   return (
     <Layout pageTitle={title} mt={0}>
       <Box backgroundColor="screencase" alignItems="center" px={8} py={8}>
@@ -41,7 +42,7 @@ const Index = ({ posts, title, description, ...props }) => {
               <p>
                 Results:{" "}
                 <NextLink href="/about" passHref>
-                  <Link>About Page 🤷🏻‍♀️</Link>
+                  <Link color="inherit">About Page 🤷🏻‍♀️</Link>
                 </NextLink>
               </p>
             </Box>
@@ -51,7 +52,7 @@ const Index = ({ posts, title, description, ...props }) => {
               <p>
                 Results:{" "}
                 <NextLink href="/blog" passHref>
-                  <Link>Blog Page ✍</Link>
+                  <Link color="inherit">Blog Page ✍</Link>
                 </NextLink>
               </p>
             </Box>
@@ -66,6 +67,7 @@ const Index = ({ posts, title, description, ...props }) => {
                     fontSize="30px"
                     isExternal
                     href="https://github.com/rodrigojv"
+                    color="inherit"
                   >
                     <FaGithub />
                   </Link>
@@ -87,6 +89,7 @@ const Index = ({ posts, title, description, ...props }) => {
           padding-bottom: 2.75rem;
           padding-top: 0.75rem;
         }
+
         p {
           line-height: 2rem;
         }

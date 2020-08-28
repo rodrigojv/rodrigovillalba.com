@@ -18,6 +18,7 @@ export default function Footer() {
             fontSize="30px"
             isExternal
             href="https://github.com/rodrigojv"
+            className="link-social-media"
           >
             <FaGithub />
           </Link>
@@ -26,6 +27,7 @@ export default function Footer() {
             fontSize="30px"
             isExternal
             href="https://twitter.com/rodrigoj_el"
+            className="link-social-media"
           >
             <FaTwitter />
           </Link>
@@ -34,6 +36,7 @@ export default function Footer() {
             fontSize="30px"
             isExternal
             href="https://www.linkedin.com/in/rodrigo-jos%C3%A9-villalba-otto-0b313618/"
+            className="link-social-media"
           >
             <FaLinkedin />
           </Link>
