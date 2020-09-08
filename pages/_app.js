@@ -46,7 +46,7 @@ const GlobalStyle = ({ children }) => {
           a.link-social-media {
             color: inherit;
           }
-          a:not(.link-social-media)::after {
+          a:not(.link-social-media):not(.link-post)::after {
             content: "";
             position: absolute;
             left: -0.1em;

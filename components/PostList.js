@@ -28,11 +28,11 @@ export default function PostList({ posts }) {
             .map((post) => {
               return (
                 <PostItemLayout post={post}>
-                  <Box fontSize="xl">
-                    <NextLink href={{ pathname: `/post/${post.slug}` }}>
-                      <a>{post.frontmatter.title}</a>
-                    </NextLink>
-                  </Box>
+                  <NextLink href={{ pathname: `/post/${post.slug}` }}>
+                    <a className="link-post">
+                      <Box fontSize="xl">{post.frontmatter.title}</Box>
+                    </a>
+                  </NextLink>
                   <Box>
                     <Tags post={post} />
                   </Box>
@@ -51,14 +51,13 @@ export default function PostList({ posts }) {
             .map((post) => {
               return (
                 <PostItemLayout post={post}>
-                  <Box fontSize="xl">
-                    <ChakraLink
-                      href={post.frontmatter.guest_post_url}
-                      isExternal
-                    >
-                      {post.frontmatter.title}
-                    </ChakraLink>
-                  </Box>
+                  <ChakraLink
+                    className="link-post"
+                    href={post.frontmatter.guest_post_url}
+                    isExternal
+                  >
+                    <Box fontSize="xl">{post.frontmatter.title}</Box>
+                  </ChakraLink>
                   <Box>
                     <Tags post={post} />
                   </Box>
@@ -73,7 +72,11 @@ export default function PostList({ posts }) {
 export function PostItemLayout({ post, children }) {
   return (
     <ListItem key={post.slug}>
-      <PseudoBox _hover={{ boxShadow: "sm" }} padding={4}>
+      <PseudoBox
+        transition={{ boxShadow: ".25s" }}
+        _hover={{ boxShadow: "sm" }}
+        padding={4}
+      >
         <Grid templateColumns="4fr 2fr" alignItems="baseline">
           {children}
         </Grid>
