@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Flex, Box } from "@chakra-ui/core";
 import Container from "./Container";
+import { useRouter } from "next/router";
 
 export default function Header() {
   return (
@@ -16,18 +17,18 @@ export default function Header() {
         <Container>
           <Flex justify="space-between">
             <Box>
-              <Link href="/">
+              <HeaderLink href="/">
                 <a className="brand">Rodrigo Villalba</a>
-              </Link>
+              </HeaderLink>
             </Box>
             <Box className="navbar">
               <nav className="navbar">
-                <Link href="/blog">
+                <HeaderLink href="/blog">
                   <a>Blog</a>
-                </Link>
-                <Link href="/about">
+                </HeaderLink>
+                <HeaderLink href="/about">
                   <a>About</a>
-                </Link>
+                </HeaderLink>
               </nav>
             </Box>
           </Flex>
@@ -52,7 +53,8 @@ export default function Header() {
         }
 
         .navbar a:hover,
-        a.brand:hover {
+        a.brand:hover,
+        a.selected:not(.brand) {
           background-color: #ababab;
         }
 
@@ -70,4 +72,17 @@ export default function Header() {
       `}</style>
     </>
   );
+}
+
+// This saved my day :)
+// https://flaviocopes.com/nextjs-active-link/
+function HeaderLink({ href, children }) {
+  const router = useRouter();
+
+  let className = children.props.className || "";
+  if (router.pathname === href) {
+    className = `${className} selected`;
+  }
+
+  return <Link href={href}>{React.cloneElement(children, { className })}</Link>;
 }
