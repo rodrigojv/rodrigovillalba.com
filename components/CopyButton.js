@@ -1,5 +1,6 @@
 import { useClipboard } from "@chakra-ui/core";
 import { Button } from "@chakra-ui/core";
+import PropTypes from "prop-types";
 
 export default function CopyButton({ value }) {
   const { onCopy, hasCopied } = useClipboard(value);
@@ -9,3 +10,7 @@ export default function CopyButton({ value }) {
     </Button>
   );
 }
+
+CopyButton.propTypes = {
+  value: PropTypes.string.isRequired,
+};

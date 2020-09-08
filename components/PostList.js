@@ -11,6 +11,8 @@ import {
   PseudoBox,
   Grid,
 } from "@chakra-ui/core";
+import PropTypes from "prop-types";
+
 export default function PostList({ posts }) {
   if (posts === "undefined") {
     return null;
@@ -27,7 +29,7 @@ export default function PostList({ posts }) {
             .filter((post) => !post.frontmatter.guest_post_url)
             .map((post) => {
               return (
-                <PostItemLayout post={post}>
+                <PostItemLayout post={post} key={post.slug}>
                   <NextLink href={{ pathname: `/post/${post.slug}` }}>
                     <a className="link-post">
                       <Box fontSize="xl">{post.frontmatter.title}</Box>
@@ -50,7 +52,10 @@ export default function PostList({ posts }) {
             .filter((post) => post.frontmatter.guest_post_url)
             .map((post) => {
               return (
-                <PostItemLayout post={post}>
+                <PostItemLayout
+                  post={post}
+                  key={post.frontmatter.guest_post_url}
+                >
                   <ChakraLink
                     className="link-post"
                     href={post.frontmatter.guest_post_url}
@@ -69,6 +74,10 @@ export default function PostList({ posts }) {
   );
 }
 
+PostList.propTypes = {
+  posts: PropTypes.array.isRequired,
+};
+
 export function PostItemLayout({ post, children }) {
   return (
     <ListItem key={post.slug}>
@@ -85,6 +94,11 @@ export function PostItemLayout({ post, children }) {
   );
 }
 
+PostItemLayout.propTypes = {
+  post: PropTypes.object.isRequired,
+  children: PropTypes.node,
+};
+
 export function Tags({ post }) {
   return (
     post.frontmatter.tags && (
@@ -98,3 +112,7 @@ export function Tags({ post }) {
     )
   );
 }
+
+Tags.propTypes = {
+  post: PropTypes.object.isRequired,
+};

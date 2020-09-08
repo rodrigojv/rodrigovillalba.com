@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Flex, Box } from "@chakra-ui/core";
 import Container from "./Container";
 import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 
 export default function Header() {
   return (
@@ -86,3 +87,8 @@ function HeaderLink({ href, children }) {
 
   return <Link href={href}>{React.cloneElement(children, { className })}</Link>;
 }
+
+HeaderLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};

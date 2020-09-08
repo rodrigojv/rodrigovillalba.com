@@ -2,6 +2,7 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Box } from "@chakra-ui/core";
+import PropTypes from "prop-types";
 
 export default function Layout({ children, pageTitle, url, ...props }) {
   return (
@@ -22,3 +23,9 @@ export default function Layout({ children, pageTitle, url, ...props }) {
     </>
   );
 }
+
+Layout.propTypes = {
+  children: PropTypes.node,
+  pageTitle: PropTypes.string.isRequired,
+  url: PropTypes.string,
+};
