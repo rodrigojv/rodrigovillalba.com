@@ -6,9 +6,7 @@ import {
   Stack,
   Tag,
   Box,
-  Flex,
-  Link,
-  Icon,
+  Link as ChakraLink,
   Divider,
   PseudoBox,
   Grid,
@@ -54,9 +52,12 @@ export default function PostList({ posts }) {
               return (
                 <PostItemLayout post={post}>
                   <Box fontSize="xl">
-                    <Link href={post.frontmatter.guest_post_url}>
+                    <ChakraLink
+                      href={post.frontmatter.guest_post_url}
+                      isExternal
+                    >
                       {post.frontmatter.title}
-                    </Link>
+                    </ChakraLink>
                   </Box>
                   <Box>
                     <Tags post={post} />

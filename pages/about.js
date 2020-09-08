@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import Container from "../components/Container";
-import { Heading, Text, Link, Stack } from "@chakra-ui/core";
+import { Heading, Text, Link as ChakraLink, Stack } from "@chakra-ui/core";
 
 const About = ({ title, description, ...props }) => {
   return (
@@ -21,9 +21,9 @@ const About = ({ title, description, ...props }) => {
             </Heading>
             <Text>
               Rodrigo is a software engineer currently working at{" "}
-              <Link href="https://wwww.sodep.com.py" isExternal>
+              <ChakraLink href="https://wwww.sodep.com.py" isExternal>
                 Sodep
-              </Link>{" "}
+              </ChakraLink>{" "}
               as a Software Developer. He graduated from Católica University in
               Asunción and has a Computer Science degree, which for him is only
               a fancy label that allows him to trick people into believing that
@@ -61,9 +61,9 @@ const About = ({ title, description, ...props }) => {
             <Text>
               That is it for now, if you want to get in touch with Rodrigo, the
               best way to reach out to him is via{" "}
-              <Link isExternal href="https://twitter.com/rodrigoj_el">
+              <ChakraLink isExternal href="https://twitter.com/rodrigoj_el">
                 Twitter
-              </Link>{" "}
+              </ChakraLink>{" "}
             </Text>
             <Text>Cheers! ❤️</Text>
           </Stack>

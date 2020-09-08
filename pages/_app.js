@@ -34,6 +34,9 @@ const GlobalStyle = ({ children }) => {
           a:not([class]) {
             text-decoration-skip-ink: auto;
           }
+          a:hover {
+            text-decoration: none !important;
+          }
           a {
             color: ${theme.colors.black};
             font-weight: ${theme.fontWeights.bold};
