@@ -1,7 +1,6 @@
-import Link from "next/link";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
-import { Box, Heading, Text, Icon } from "@chakra-ui/core";
+import { Box, Heading, Text, Icon, Stack, Tag } from "@chakra-ui/core";
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 import Code from "../../components/Code";
@@ -12,22 +11,26 @@ export default function BlogPost({
   markdownBody,
   url,
 }) {
-  if (!frontmatter) return <></>;
-  console.log({ frontmatter });
+  if (!frontmatter) {
+    return <></>;
+  }
   return (
     <>
       <Layout pageTitle={`${siteTitle} | ${frontmatter.title}`} url={url}>
         <Container maxW="800px">
           <article>
             <header>
-              <Link href="/blog">
-                <a>
-                  <Icon name="chevron-left" />
-                  <span>Back to post list</span>
-                </a>
-              </Link>
               <Heading mt={4}>{frontmatter.title}</Heading>
               <Text>By {frontmatter.author}</Text>
+              {frontmatter.tags && (
+                <Stack mt={2} spacing={4} isInline>
+                  {frontmatter.tags.map((tag) => (
+                    <Tag size="sm" key={tag} variantColor="blue">
+                      {tag}
+                    </Tag>
+                  ))}
+                </Stack>
+              )}
             </header>
             <Box mt={4} px={4} py={6}>
               <ReactMarkdown source={markdownBody} renderers={{ code: Code }} />
