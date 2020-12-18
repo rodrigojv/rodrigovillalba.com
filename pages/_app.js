@@ -1,10 +1,5 @@
-import {
-  ChakraProvider,
-  CSSReset,
-  ColorModeProvider,
-  theme,
-  useTheme,
-} from "@chakra-ui/react";
+import { ChakraProvider, theme, useTheme } from "@chakra-ui/react";
+import Head from "next/head";
 import { Global, css } from "@emotion/react";
 
 const customTheme = {
@@ -72,6 +67,9 @@ const CustomGlobalStyle = ({ children }) => {
 const App = ({ Component, pageProps }) => {
   return (
     <ChakraProvider theme={customTheme}>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <CustomGlobalStyle>
         <Component {...pageProps} />
       </CustomGlobalStyle>
