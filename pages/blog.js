@@ -2,7 +2,7 @@ import matter from "gray-matter";
 import Layout from "../components/Layout";
 import PostList from "../components/PostList";
 import Container from "../components/Container";
-import { Heading, Text, Box, Stack } from "@chakra-ui/core";
+import { Heading, Text, Box, Stack } from "@chakra-ui/react";
 
 const Index = ({ posts, title }) => {
   return (

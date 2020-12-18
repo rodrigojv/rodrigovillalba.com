@@ -9,10 +9,11 @@
     "export": "next export"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.8.0",
-    "@emotion/core": "^10.0.28",
-    "@emotion/styled": "^10.0.27",
-    "emotion-theming": "^10.0.27",
+    "@chakra-ui/react": "^1.0.0",
+    "framer-motion": ">=3.0.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "emotion-theming": "^10.0.10",
     "gray-matter": "^4.0.2",
     "next": "^9.4.1",
     "next-fonts": "^1.4.0",

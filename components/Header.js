@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Flex, Box } from "@chakra-ui/core";
+import { Flex, Box } from "@chakra-ui/react";
 import Container from "./Container";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";

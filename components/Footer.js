@@ -1,4 +1,4 @@
-import { Link, Stack, Flex } from "@chakra-ui/core";
+import { Link, Stack, Flex } from "@chakra-ui/react";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
@@ -14,7 +14,6 @@ export default function Footer() {
       >
         <Stack isInline={true}>
           <Link
-            isRound={true}
             fontSize="30px"
             isExternal
             href="https://github.com/rodrigojv"
@@ -23,7 +22,6 @@ export default function Footer() {
             <FaGithub />
           </Link>
           <Link
-            isRound={true}
             fontSize="30px"
             isExternal
             href="https://twitter.com/rodrigoj_el"
@@ -32,7 +30,6 @@ export default function Footer() {
             <FaTwitter />
           </Link>
           <Link
-            isRound={true}
             fontSize="30px"
             isExternal
             href="https://www.linkedin.com/in/rodrigo-jos%C3%A9-villalba-otto-0b313618/"

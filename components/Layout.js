@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Box } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
 export default function Layout({ children, pageTitle, url, ...props }) {

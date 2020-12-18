@@ -8,9 +8,8 @@ import {
   Box,
   Link as ChakraLink,
   Divider,
-  PseudoBox,
   Grid,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
 export default function PostList({ posts }) {
@@ -81,7 +80,7 @@ PostList.propTypes = {
 export function PostItemLayout({ post, children }) {
   return (
     <ListItem key={post.slug}>
-      <PseudoBox
+      <Box
         transition={{ boxShadow: ".25s" }}
         _hover={{ boxShadow: "sm" }}
         padding={4}
@@ -89,7 +88,7 @@ export function PostItemLayout({ post, children }) {
         <Grid templateColumns="4fr 2fr" alignItems="baseline">
           {children}
         </Grid>
-      </PseudoBox>
+      </Box>
     </ListItem>
   );
 }
@@ -104,7 +103,7 @@ export function Tags({ post }) {
     post.frontmatter.tags && (
       <Stack mt={2} spacing={4} isInline>
         {post.frontmatter.tags.map((tag) => (
-          <Tag size="md" key={tag} variantColor="blue">
+          <Tag size="md" key={tag} colorScheme="blue">
             {tag}
           </Tag>
         ))}

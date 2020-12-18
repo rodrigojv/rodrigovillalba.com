@@ -2,7 +2,7 @@ import matter from "gray-matter";
 import Layout from "../components/Layout";
 import NextLink from "next/link";
 import { FaGithub } from "react-icons/fa";
-import { Stack, Box, Link, Flex, useTheme } from "@chakra-ui/core";
+import { Stack, Box, Link, Flex, useTheme } from "@chakra-ui/react";
 
 const Index = ({ posts, title, description, ...props }) => {
   const theme = useTheme();
@@ -57,13 +57,12 @@ const Index = ({ posts, title, description, ...props }) => {
               </p>
             </Box>
             <Box>
-              <p>>What about Open Source?</p>
+              <p>What about Open Source?</p>
               <p>Loading results...</p>
               <Flex>
                 <span>Results:</span>{" "}
                 <Flex ml={2}>
                   <Link
-                    isRound={true}
                     fontSize="30px"
                     isExternal
                     href="https://github.com/rodrigojv"

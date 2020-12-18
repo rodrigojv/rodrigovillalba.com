@@ -1,6 +1,6 @@
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
-import { Box, Heading, Text, Icon, Stack, Tag } from "@chakra-ui/core";
+import { Box, Heading, Text, Stack, Tag } from "@chakra-ui/react";
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 import Code from "../../components/Code";
@@ -25,7 +25,7 @@ export default function BlogPost({
               {frontmatter.tags && (
                 <Stack mt={2} spacing={4} isInline>
                   {frontmatter.tags.map((tag) => (
-                    <Tag size="sm" key={tag} variantColor="blue">
+                    <Tag size="sm" key={tag} colorScheme="blue">
                       {tag}
                     </Tag>
                   ))}
@@ -48,8 +48,6 @@ export async function getStaticProps({ ...ctx }) {
   const content = await import(`../../posts/${postname}.md`);
   const config = await import(`../../siteconfig.json`);
   const data = matter(content.default);
-  // const url = "https://" + ctx.req.headers.host + "/" + ctx.req.params.slug;
-  console.log("------params", ctx.params);
   return {
     props: {
       siteTitle: config.title,

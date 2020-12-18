@@ -1,11 +1,11 @@
 import {
-  ThemeProvider,
+  ChakraProvider,
   CSSReset,
   ColorModeProvider,
   theme,
   useTheme,
-} from "@chakra-ui/core";
-import { Global, css } from "@emotion/core";
+} from "@chakra-ui/react";
+import { Global, css } from "@emotion/react";
 
 const customTheme = {
   ...theme,
@@ -19,11 +19,10 @@ const customTheme = {
     primary: { 200: "#84d2f6", 400: "#386fa4" },
   },
 };
-const GlobalStyle = ({ children }) => {
+const CustomGlobalStyle = ({ children }) => {
   const theme = useTheme();
   return (
     <>
-      <CSSReset />
       <Global
         styles={css`
           html,
@@ -72,13 +71,11 @@ const GlobalStyle = ({ children }) => {
 
 const App = ({ Component, pageProps }) => {
   return (
-    <ThemeProvider theme={customTheme}>
-      <ColorModeProvider value="light">
-        <GlobalStyle>
-          <Component {...pageProps} />
-        </GlobalStyle>
-      </ColorModeProvider>
-    </ThemeProvider>
+    <ChakraProvider theme={customTheme}>
+      <CustomGlobalStyle>
+        <Component {...pageProps} />
+      </CustomGlobalStyle>
+    </ChakraProvider>
   );
 };
 

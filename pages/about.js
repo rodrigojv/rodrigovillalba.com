@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import Container from "../components/Container";
-import { Heading, Text, Link as ChakraLink, Stack } from "@chakra-ui/core";
+import { Heading, Text, Link as ChakraLink, Stack } from "@chakra-ui/react";
 
 const About = ({ title, description, ...props }) => {
   return (
