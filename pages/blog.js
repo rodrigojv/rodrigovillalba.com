@@ -21,10 +21,6 @@ const Index = ({ posts, title }) => {
       <Box as="section" mt={8}>
         <Container>
           <PostList posts={posts} />
-          <Text textAlign="center" mt={4} py={4}>
-            🚧This blog is under construction. More useful content is coming
-            soon, stay tuned
-          </Text>
         </Container>
       </Box>
     </Layout>
