@@ -1,7 +1,7 @@
 ---
 title: "Giving up social media"
 author: "Rodrigo Villalba"
-tags: ["productivity"]
+tags: ["mentalhealth"]
 ---
 
 Halfway through 2020 I made the decision of staying out from social media. I've long before deleted my Facebook account but was still spending a lot of time on twitter and I started to feel the same mind-agitation that I had before when browsing Facebook.
