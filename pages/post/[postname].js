@@ -1,9 +1,11 @@
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
+
 import { Box, Heading, Text, Stack, Tag } from "@chakra-ui/react";
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
-import Code from "../../components/Code";
+import PostRenderer from "../../components/PostRenderer";
+import tagToColor from "../../utils/tagToColor";
 
 export default function BlogPost({
   siteTitle,
@@ -25,7 +27,7 @@ export default function BlogPost({
               {frontmatter.tags && (
                 <Stack mt={2} spacing={4} isInline>
                   {frontmatter.tags.map((tag) => (
-                    <Tag size="sm" key={tag} colorScheme="blue">
+                    <Tag size="sm" key={tag} colorScheme={tagToColor(tag)}>
                       {tag}
                     </Tag>
                   ))}
@@ -33,7 +35,12 @@ export default function BlogPost({
               )}
             </header>
             <Box mt={4} px={4} py={6}>
-              <ReactMarkdown source={markdownBody} renderers={{ code: Code }} />
+              {/* <ReactMarkdown source={markdownBody} renderers={{ code: Code }} /> */}
+              <ReactMarkdown
+                renderers={PostRenderer}
+                source={markdownBody}
+                escapeHtml={false}
+              />
             </Box>
           </article>
         </Container>
