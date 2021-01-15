@@ -11,6 +11,7 @@ import {
   Grid,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+import tagToColor from "../utils/tagToColor";
 
 export default function PostList({ posts }) {
   if (posts === "undefined") {
@@ -103,7 +104,7 @@ export function Tags({ post }) {
     post.frontmatter.tags && (
       <Stack mt={2} spacing={4} isInline>
         {post.frontmatter.tags.map((tag) => (
-          <Tag size="md" key={tag} colorScheme="blue">
+          <Tag size="md" key={tag} colorScheme={tagToColor(tag)}>
             {tag}
           </Tag>
         ))}
