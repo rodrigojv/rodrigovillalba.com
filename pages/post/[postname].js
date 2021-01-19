@@ -20,7 +20,7 @@ export default function BlogPost({
     <>
       <Layout pageTitle={`${siteTitle} | ${frontmatter.title}`} url={url}>
         <Container maxW="800px">
-          <article>
+          <Box as="article" fontSize="lg" lineHeight="1.75em">
             <header>
               <Heading mt={4}>{frontmatter.title}</Heading>
               <Text>By {frontmatter.author}</Text>
@@ -41,7 +41,7 @@ export default function BlogPost({
                 escapeHtml={false}
               />
             </Box>
-          </article>
+          </Box>
         </Container>
       </Layout>
     </>
