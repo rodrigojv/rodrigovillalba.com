@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import ChakraUIRenderer, { defaults } from "chakra-ui-markdown-renderer";
-import { Text, useTheme } from "@chakra-ui/react";
+import { Text, useTheme, ListItem } from "@chakra-ui/react";
 
 const newTheme = {
   ...defaults,
@@ -25,6 +25,9 @@ const newTheme = {
         {children}
       </Text>
     );
+  },
+  listItem: (props) => {
+    return <ListItem {...props} style={{ marginTop: "1rem" }} />;
   },
 };
 export default ChakraUIRenderer(newTheme);

@@ -34,8 +34,7 @@ export default function BlogPost({
                 </Stack>
               )}
             </header>
-            <Box mt={4} px={4} py={6}>
-              {/* <ReactMarkdown source={markdownBody} renderers={{ code: Code }} /> */}
+            <Box my={4}>
               <ReactMarkdown
                 renderers={PostRenderer}
                 source={markdownBody}
