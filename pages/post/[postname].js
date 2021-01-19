@@ -6,6 +6,7 @@ import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 import PostRenderer from "../../components/PostRenderer";
 import tagToColor from "../../utils/tagToColor";
+import { format, parseISO } from "date-fns";
 
 export default function BlogPost({
   siteTitle,
@@ -23,7 +24,9 @@ export default function BlogPost({
           <Box as="article" fontSize="lg" lineHeight="1.75em">
             <header>
               <Heading mt={4}>{frontmatter.title}</Heading>
-              <Text>By {frontmatter.author}</Text>
+              <Text mt={2} fontSize="sm">
+                By {frontmatter.author} on {frontmatter.formattedDate}
+              </Text>
               {frontmatter.tags && (
                 <Stack mt={2} spacing={4} isInline>
                   {frontmatter.tags.map((tag) => (
@@ -51,15 +54,16 @@ export default function BlogPost({
 export async function getStaticProps({ ...ctx }) {
   const { postname } = ctx.params;
 
-  const content = await import(`../../posts/${postname}.md`);
+  const postContent = await import(`../../posts/${postname}.md`);
   const config = await import(`../../siteconfig.json`);
-  const data = matter(content.default);
+  const { data, content } = matter(postContent.default);
+  const formattedDate = format(parseISO(data.date), "d MMM, yyyy");
   return {
     props: {
       siteTitle: config.title,
-      frontmatter: data.data,
+      frontmatter: { ...data, formattedDate },
       url: null,
-      markdownBody: data.content,
+      markdownBody: content,
     },
   };
 }

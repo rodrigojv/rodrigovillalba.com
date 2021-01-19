@@ -1,9 +1,9 @@
 import matter from "gray-matter";
+import { format, parseISO } from "date-fns";
 import Layout from "../components/Layout";
 import PostList from "../components/PostList";
 import Container from "../components/Container";
 import { Heading, Text, Box, Stack } from "@chakra-ui/react";
-
 const Index = ({ posts, title }) => {
   return (
     <Layout pageTitle={`Blog | ${title}`}>
@@ -39,19 +39,25 @@ export async function getStaticProps() {
     const data = keys.map((key, index) => {
       let slug = key.replace(/^.*[\\\/]/, "").slice(0, -3);
       const value = values[index];
-      const document = matter(value.default);
+      const { data, content } = matter(value.default);
+      const formattedDate = format(parseISO(data.date), "d MMM, yyyy");
       return {
-        frontmatter: document.data,
-        markdownBody: document.content,
+        frontmatter: { ...data, formattedDate },
+        markdownBody: content,
         slug,
       };
     });
     return data;
   })(require.context("../posts", true, /\.md$/));
 
+  const postDataSortByDate = posts.sort((post1, post2) => {
+    const beforeDate = parseISO(post1.frontmatter.date);
+    const afterDate = parseISO(post2.frontmatter.date);
+    return afterDate - beforeDate;
+  });
   return {
     props: {
-      posts,
+      posts: postDataSortByDate,
       title: configData.default.title,
       description: configData.default.description,
     },

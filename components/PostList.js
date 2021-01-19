@@ -9,6 +9,7 @@ import {
   Link as ChakraLink,
   Divider,
   Grid,
+  Text,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import tagToColor from "../utils/tagToColor";
@@ -19,9 +20,6 @@ export default function PostList({ posts }) {
   }
   return (
     <div>
-      <Heading mt={4} as="h3" size="sm">
-        Latest Posts
-      </Heading>
       {!posts && <div>No posts!</div>}
       <List mt={4} spacing={6}>
         {posts &&
@@ -32,7 +30,13 @@ export default function PostList({ posts }) {
                 <PostItemLayout post={post} key={post.slug}>
                   <NextLink href={{ pathname: `/post/${post.slug}` }}>
                     <a className="link-post">
-                      <Box fontSize="xl">{post.frontmatter.title}</Box>
+                      <Heading fontSize="1.75rem" fontWeight="bold">
+                        {post.frontmatter.title}
+                      </Heading>
+
+                      <Text fontWeight="medium" color="gray.400">
+                        {post.frontmatter.formattedDate}
+                      </Text>
                     </a>
                   </NextLink>
                   <Box>

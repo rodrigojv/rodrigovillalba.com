@@ -2,6 +2,7 @@
 title: "Being good enough is good enough"
 author: "Rodrigo Villalba"
 tags: ["work", "wellbeing"]
+date: "2021-01-15T19:53:51.635Z"
 ---
 
 Last year we did a couple of performance reviews at work, where we assesed what we did good and what we could improve. And I struggled to talk about both sides, specially when it came to highlight my strenghts at work.

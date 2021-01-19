@@ -3,6 +3,7 @@ title: "Atomic Habits: best book on habits"
 author: "Rodrigo Villalba"
 tags: ["books"]
 image: posts/images/AtomicHabits_1book.png
+date: "2021-01-19T19:53:51.635Z"
 ---
 
 ![Atomic Habits](/posts/images/AtomicHabits_1book.png)
