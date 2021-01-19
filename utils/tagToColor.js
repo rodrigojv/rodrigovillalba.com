@@ -4,6 +4,8 @@ const tags = {
   mentalhealth: "cyan",
   spanish: "green",
   wellbeing: "orange",
+  development: "red",
+  books: "yellow",
 };
 
 export default function tagToColor(tag) {
