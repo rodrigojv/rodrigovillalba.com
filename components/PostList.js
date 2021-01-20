@@ -34,14 +34,16 @@ export default function PostList({ posts }) {
                       <Heading fontSize="1.75rem" fontWeight="bold">
                         {post.frontmatter.title}
                       </Heading>
-
-                      <Text fontWeight="medium" color="gray.400">
-                        <HStack direction="horizontal" spacing={2}>
-                          <span>{post.frontmatter.formattedDate}</span>
-                          <span>&middot;</span>
-                          <span>{post.frontmatter.readingTime}</span>
-                        </HStack>
-                      </Text>
+                      <HStack
+                        spacing={2}
+                        fontWeight="medium"
+                        color="gray.400"
+                        mt={2}
+                      >
+                        <span>{post.frontmatter.formattedDate}</span>
+                        <span>&middot;</span>
+                        <span>{post.frontmatter.readingTime}</span>
+                      </HStack>
                     </a>
                   </NextLink>
                   <Box>
