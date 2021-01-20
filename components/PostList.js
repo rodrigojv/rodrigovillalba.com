@@ -4,6 +4,7 @@ import {
   ListItem,
   Heading,
   Stack,
+  HStack,
   Tag,
   Box,
   Link as ChakraLink,
@@ -35,7 +36,11 @@ export default function PostList({ posts }) {
                       </Heading>
 
                       <Text fontWeight="medium" color="gray.400">
-                        {post.frontmatter.formattedDate}
+                        <HStack direction="horizontal" spacing={2}>
+                          <span>{post.frontmatter.formattedDate}</span>
+                          <span>&middot;</span>
+                          <span>{post.frontmatter.readingTime}</span>
+                        </HStack>
                       </Text>
                     </a>
                   </NextLink>

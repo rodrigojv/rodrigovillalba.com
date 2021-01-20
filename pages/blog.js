@@ -1,5 +1,6 @@
 import matter from "gray-matter";
 import { format, parseISO } from "date-fns";
+import readingTime from "reading-time";
 import Layout from "../components/Layout";
 import PostList from "../components/PostList";
 import Container from "../components/Container";
@@ -41,8 +42,9 @@ export async function getStaticProps() {
       const value = values[index];
       const { data, content } = matter(value.default);
       const formattedDate = format(parseISO(data.date), "d MMM, yyyy");
+      const stats = readingTime(content);
       return {
-        frontmatter: { ...data, formattedDate },
+        frontmatter: { ...data, formattedDate, readingTime: stats.text },
         markdownBody: content,
         slug,
       };
