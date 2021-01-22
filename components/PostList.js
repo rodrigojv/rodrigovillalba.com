@@ -97,7 +97,7 @@ export function PostItemLayout({ post, children }) {
         _hover={{ boxShadow: "sm" }}
         padding={4}
       >
-        <Grid templateColumns="4fr 2fr" alignItems="baseline">
+        <Grid templateColumns={{ md: "4fr 2fr" }} alignItems="baseline">
           {children}
         </Grid>
       </Box>
