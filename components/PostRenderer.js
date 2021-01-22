@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import ChakraUIRenderer, { defaults } from "chakra-ui-markdown-renderer";
-import { Text, useTheme, ListItem } from "@chakra-ui/react";
+import { Text, useTheme, ListItem, Box } from "@chakra-ui/react";
 
 const newTheme = {
   ...defaults,
@@ -15,7 +15,8 @@ const newTheme = {
     const theme = useTheme();
 
     return (
-      <Text
+      <Box
+        as="blockquote"
         my={6}
         px={6}
         borderLeftWidth={4}
@@ -23,11 +24,12 @@ const newTheme = {
         borderLeftColor={theme.colors.primary[200]}
       >
         {children}
-      </Text>
+      </Box>
     );
   },
   listItem: (props) => {
-    return <ListItem {...props} style={{ marginTop: "1rem" }} />;
+    // eslint-disable-next-line react/prop-types
+    return <ListItem style={{ marginTop: "1rem" }}>{props.children}</ListItem>;
   },
 };
 export default ChakraUIRenderer(newTheme);
