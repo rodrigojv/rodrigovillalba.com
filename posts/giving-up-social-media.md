@@ -3,6 +3,7 @@ title: "Giving up social media"
 author: "Rodrigo Villalba"
 tags: ["mentalhealth"]
 date: "2021-01-08T19:53:51.635Z"
+summary: "Halfway through 2020 I made the decision of staying out from social media."
 ---
 
 Halfway through 2020 I made the decision of staying out from social media. I've long before deleted my Facebook account but was still spending a lot of time on twitter and I started to feel the same mind-agitation that I had before when browsing Facebook.

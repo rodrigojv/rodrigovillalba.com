@@ -3,15 +3,20 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Box } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+import BlogSeo from "./BlogSeo";
 
-export default function Layout({ children, pageTitle, url, ...props }) {
+export default function BlogLayout({
+  children,
+  frontmatter,
+  siteUrl,
+  ...props
+}) {
   return (
     <>
       <Head>
-        <link rel="canonical" href={url} />
-        <title>{pageTitle}</title>
+        <title>{frontmatter.title}</title>
       </Head>
-
+      <BlogSeo url={`${siteUrl}/post/${frontmatter.slug}`} {...frontmatter} />
       <section>
         <Header />
         <Box as="main" mt={6} {...props}>
@@ -23,8 +28,8 @@ export default function Layout({ children, pageTitle, url, ...props }) {
   );
 }
 
-Layout.propTypes = {
+BlogLayout.propTypes = {
   children: PropTypes.node,
-  pageTitle: PropTypes.string.isRequired,
-  url: PropTypes.string,
+  frontmatter: PropTypes.object.isRequired,
+  siteUrl: PropTypes.string,
 };

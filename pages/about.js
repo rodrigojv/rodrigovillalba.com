@@ -5,7 +5,7 @@ import { Heading, Text, Link as ChakraLink, Stack } from "@chakra-ui/react";
 const About = ({ title, description, ...props }) => {
   return (
     <>
-      <Layout pageTitle={`About | ${title}`} description={description}>
+      <Layout pageTitle={`About - ${title}`} description={description}>
         <Container maxW="800px">
           <Heading textAlign="center">About</Heading>
           <Stack spacing={4} py={6}>

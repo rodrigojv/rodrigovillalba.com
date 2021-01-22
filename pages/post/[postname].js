@@ -2,7 +2,7 @@ import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 
 import { Box, Heading, Text, Stack, Tag } from "@chakra-ui/react";
-import Layout from "../../components/Layout";
+import BlogLayout from "../../components/BlogLayout";
 import Container from "../../components/Container";
 import PostRenderer from "../../components/PostRenderer";
 import tagToColor from "../../utils/tagToColor";
@@ -12,14 +12,14 @@ export default function BlogPost({
   siteTitle,
   frontmatter,
   markdownBody,
-  url,
+  siteUrl,
 }) {
   if (!frontmatter) {
     return <></>;
   }
   return (
     <>
-      <Layout pageTitle={`${siteTitle} | ${frontmatter.title}`} url={url}>
+      <BlogLayout frontmatter={frontmatter} siteUrl={siteUrl}>
         <Container maxW="800px">
           <Box as="article" fontSize="lg" lineHeight="1.75em">
             <header>
@@ -46,7 +46,7 @@ export default function BlogPost({
             </Box>
           </Box>
         </Container>
-      </Layout>
+      </BlogLayout>
     </>
   );
 }
@@ -61,8 +61,8 @@ export async function getStaticProps({ ...ctx }) {
   return {
     props: {
       siteTitle: config.title,
-      frontmatter: { ...data, formattedDate },
-      url: null,
+      frontmatter: { ...data, slug: postname, formattedDate },
+      siteUrl: config.url,
       markdownBody: content,
     },
   };

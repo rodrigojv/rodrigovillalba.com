@@ -7,7 +7,7 @@ import Container from "../components/Container";
 import { Heading, Text, Box, Stack } from "@chakra-ui/react";
 const Index = ({ posts, title }) => {
   return (
-    <Layout pageTitle={`Blog | ${title}`}>
+    <Layout pageTitle={`Blog - ${title}`}>
       <header>
         <Container textAlign="center">
           <Stack spacing={6}>
