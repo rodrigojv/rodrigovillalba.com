@@ -23,6 +23,7 @@ export default function BlogLayout({
           {children}
         </Box>
       </section>
+      {/* TODO agregar https://github.com/nygardk/react-share para twitter */}
       <Footer></Footer>
     </>
   );
