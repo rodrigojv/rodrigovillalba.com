@@ -3,7 +3,7 @@ title: "The classical guitar way of working effectively"
 author: "Rodrigo Villalba"
 tags: ["development", "productivity"]
 date: "2021-01-28T19:53:51.635Z"
-summary: ""
+summary: "Principles on working effectively as a developer inspired from classical guitar"
 ---
 
 In 2020 I picked back the guitar after a while, I have been on and off with the instrument since I was a teenager. Yes, I have not been consistent at all, and last year with all that time at home I decided to try getting serious again with my practice. I watched a lot of videos from classical guitar players, where many of them talked about the importance of effective practice. One would think that guitar playing is pure fun and playing songs, but no, most classical guitarist have very structured and disciplined practice routine, for them playing an instrument is like work.
