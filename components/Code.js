@@ -4,7 +4,6 @@
  */
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/vsDark";
-import CopyButton from "./CopyButton";
 import PropTypes from "prop-types";
 
 export default function Code({ value, language }) {
@@ -33,7 +32,6 @@ export default function Code({ value, language }) {
               ))}
             </div>
           ))}
-          <CopyButton value={value.trim()} />
         </pre>
       )}
     </Highlight>
