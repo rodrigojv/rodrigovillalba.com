@@ -6,6 +6,7 @@ const tags = {
   wellbeing: "orange",
   development: "red",
   books: "yellow",
+  react: "pink",
 };
 
 export default function tagToColor(tag) {
