@@ -167,7 +167,7 @@
         }
 
         .marquee::after {
-            content: '🎂 heri Mione • queERY • joven aprendiz • pada 🎉';
+            /* content: '🎂 heri Mione • queERY • joven aprendiz • pada 🎉'; */
             padding-left: 100px;
         }
 
@@ -220,6 +220,19 @@
             max-height: 350px;
         }
 
+        #imageContainer22 {
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            flex-direction: column;
+            max-width: 450px;
+        }
+
+        #imageContainer22 img {
+            max-width: 300px;
+            max-height: 300px;
+        }
+
         .image-container.show {
             display: flex;
             animation: fadeIn 0.5s ease;
@@ -237,6 +250,10 @@
         }
 
         #imageContainer19.show {
+            animation: fadeInLeft 0.5s ease;
+        }
+
+        #imageContainer22.show {
             animation: fadeInLeft 0.5s ease;
         }
 
@@ -292,7 +309,7 @@
 <body>
     <div class="marquee-container">
         <div class="marquee">
-            🎂 heri Mione • queERY • joven aprendiz • pada 🎉 &nbsp;&nbsp;&nbsp;&nbsp;
+            🎂 heri Mione • queERY • joven aprendiz • pada • erintegro • bob esponjeri • tuichaiteri  • mm • mm • mm   🎉 &nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 
@@ -326,7 +343,7 @@
             <img id="hermioneImg" src="" alt="Hermione Granger" style="display: none;">
             <img id="yodaImg" src="" alt="Yoda" style="display: none;">
         </div>
-        <div class="image-text">12 hs: Hola es la hora de las biblias, Wuhuu!</div>
+        <div class="image-text">12 hs: Holiwis! Es la hora de las biblias, Wuhuu!</div>
     </div>
 
     <div class="image-container" id="imageContainer17">
@@ -334,14 +351,19 @@
             <img id="javaImg" src="" alt="Java Logo" class="java-img" style="display: none;">
             <img id="catImg" src="" alt="Gato" style="display: none;">
         </div>
-        <div class="image-text">17hs: I love JAVA!! Y tengo consultas...</div>
+        <div class="image-text">17hs: I love JAVA!! Y tengo consultas surtidas...</div>
     </div>
 
     <div class="image-container" id="imageContainer19">
         <img id="padelImg" src="" alt="Pala de Padel" style="display: none;">
         <div class="image-text">19hs: Toca jugar al padel con los amiwis!!</div>
     </div>
-    
+
+    <div class="image-container" id="imageContainer22">
+        <img id="cryingGirlImg" src="" alt="Niña llorando" style="display: none;">
+        <div class="image-text">22hs: Ya no me gusta tanto Java y quiero descargarme mientras me río.</div>
+    </div>
+
     <div class="instructions">
         Arrastra la manecilla de la hora para moverla 🕐
     </div>
@@ -354,14 +376,16 @@
         const imageContainer12 = document.getElementById('imageContainer12');
         const imageContainer17 = document.getElementById('imageContainer17');
         const imageContainer19 = document.getElementById('imageContainer19');
+        const imageContainer22 = document.getElementById('imageContainer22');
         const hermioneImg = document.getElementById('hermioneImg');
         const yodaImg = document.getElementById('yodaImg');
         const javaImg = document.getElementById('javaImg');
         const catImg = document.getElementById('catImg');
         const padelImg = document.getElementById('padelImg');
+        const cryingGirlImg = document.getElementById('cryingGirlImg');
         
         let isDragging = false;
-        let currentHour = 9; // Empezar en las 9
+        let currentHour = 11; // Empezar en las 11
 
         // Cargar imágenes desde URLs públicas (puedes cambiar estas URLs por rutas locales)
         hermioneImg.src = 'https://upload.wikimedia.org/wikipedia/en/d/d3/Hermione_Granger_poster.jpg';
@@ -389,11 +413,11 @@
             this.style.display = 'block';
         };
 
-        // Cargar imagen de gato
-        catImg.src = 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400';
+        // Cargar GIF de gato
+        catImg.src = 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif';
         catImg.onerror = function() {
             // Si no carga, usar otra URL alternativa
-            this.src = 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg';
+            this.src = 'https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif';
             this.onerror = function() {
                 // Si tampoco carga, mostrar placeholder
                 this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y5ZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE4IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+6YOB6YOB6YOBPC90ZXh0Pjwvc3ZnPg==';
@@ -403,15 +427,27 @@
             this.style.display = 'block';
         };
 
-        // Cargar imagen de pala de padel
-        padelImg.src = 'https://a.storyblok.com/f/320069/990x450/bc604c8582/what-is-padel-sport-history-origins-and-tips.jpg/m/3840x0/filters:quality(80)';
+        // Cargar GIF de Messi jugando al padel
+        padelImg.src = 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExenI1YXN6emc1ZWxseG9lMmxyNzR2ZHF6bXAxaDAza3ZsajAzcHAzdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PZ1yRtwjc1wLAvfMJZ/giphy.gif';
         padelImg.onerror = function() {
-            this.src = 'https://cdn.pixabay.com/photo/2021/11/03/14/21/padel-6766048_1280.jpg';
+            this.src = 'https://media.giphy.com/media/PZ1yRtwjc1wLAvfMJZ/giphy.gif';
             this.onerror = function() {
                 this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y5ZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE4IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+6YOB6YOB6YOBPC90ZXh0Pjwvc3ZnPg==';
             };
         };
         padelImg.onload = function() {
+            this.style.display = 'block';
+        };
+
+        // Cargar GIF de niña llorando
+        cryingGirlImg.src = 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWc4cG4wcnpsamoyYzJxNW1pZGFra3ljd3QydGlpdm5uOHlkNXlsMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eXKsHCP0XzwQkE0DYk/giphy.gif';
+        cryingGirlImg.onerror = function() {
+            this.src = 'https://media.giphy.com/media/eXKsHCP0XzwQkE0DYk/giphy.gif';
+            this.onerror = function() {
+                this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y5ZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE4IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+6YOB6YOB6YOBPC90ZXh0Pjwvc3ZnPg==';
+            };
+        };
+        cryingGirlImg.onload = function() {
             this.style.display = 'block';
         };
 
@@ -441,7 +477,7 @@
             let hour = Math.round(angle / 30) % 12;
 
             // Sistema de snap magnético para horas clave
-            const keyHours = [0, 5, 7]; // 12, 17 (5 PM), 19 (7 PM)
+            const keyHours = [0, 5, 7, 10]; // 12, 17 (5 PM), 19 (7 PM), 22 (10 PM)
             const snapThreshold = 15; // grados de tolerancia (0.5 horas)
 
             for (const keyHour of keyHours) {
@@ -473,12 +509,21 @@
             imageContainer19.classList.add('show');
             imageContainer12.classList.remove('show');
             imageContainer17.classList.remove('show');
+            imageContainer22.classList.remove('show');
+        }
+
+        function showImages22() {
+            imageContainer22.classList.add('show');
+            imageContainer12.classList.remove('show');
+            imageContainer17.classList.remove('show');
+            imageContainer19.classList.remove('show');
         }
 
         function hideAllImages() {
             imageContainer12.classList.remove('show');
             imageContainer17.classList.remove('show');
             imageContainer19.classList.remove('show');
+            imageContainer22.classList.remove('show');
         }
 
         function createConfetti() {
@@ -515,13 +560,12 @@
             // Verificar si llegó a las 12 (mediodía)
             if (hour === 0) {
                 showImages12();
-                createConfetti();
             } else if (hour === 5) { // 17:00 = 5 PM en formato 12 horas
                 showImages17();
-                createConfetti();
             } else if (hour === 7) { // 19:00 = 7 PM en formato 12 horas
                 showImages19();
-                createConfetti();
+            } else if (hour === 10) { // 22:00 = 10 PM en formato 12 horas
+                showImages22();
             } else {
                 hideAllImages();
             }
@@ -531,8 +575,11 @@
             isDragging = false;
         });
 
-        // Inicializar reloj en las 9
-        updateClock(9, 0);
+        // Inicializar reloj en las 11
+        updateClock(11, 0);
+
+        // Mostrar confetti solo al cargar la página
+        createConfetti();
     </script>
 </body>
 </html>
