@@ -1,0 +1,34 @@
+---
+import Base from "../layouts/Base.astro";
+import SiteFrame from "../components/SiteFrame.astro";
+import { CV_PATH, cvAvailable } from "../utils/cv";
+---
+<Base title="About · Rodrigo Villalba" description="A software developer from Paraguay. Specializing on web development, React and JavaScript ecosystems.">
+  <SiteFrame>
+    <main class="prose">
+      <h1>About</h1>
+      <h2>Who is Rodrigo Villalba?</h2>
+      <p>A software developer from Paraguay. Specializing on web development, React and JavaScript ecosystems.</p>
+      <h2>So, tell me more about this guy</h2>
+      <p>Rodrigo is a software engineer currently working at <a href="https://www.sodep.com.py" rel="noopener">Sodep</a> as a Software Developer. He graduated from Católica University in Asunción and has a Computer Science degree, which for him is only a fancy label that allows him to trick people into believing that he actually knows what he is doing.</p>
+      <h3>Technical interests</h3>
+      <p>Rodrigo has a lot of technical interests, his main focus being React, Node, GraphQL and the JavaScript ecosystem.</p>
+      <p>He considers himself proficient at technical writing, teaching and mentoring, and also likes writing blog posts where he talks about himself in third person.</p>
+      <p>Code quality is also a special interest of him, and anything that is related to that subject, like applying refactoring techniques, thinking about design principles, and solving complex architecture problems.</p>
+      <h2>Non-technical interests</h2>
+      <p>When he is not being technical, Rodrigo enjoys spending time running, meditating and reading. His favorite type of books are the mind expanding ones and memoirs.</p>
+      <p>He also loves playing the guitar and watching movies and TV shows.</p>
+      {cvAvailable && (
+        <>
+          <h2>Curriculum</h2>
+          <p class="cv-block">
+            <a href={CV_PATH}>Ver PDF</a>
+            <a href={CV_PATH} download>Descargar</a>
+          </p>
+        </>
+      )}
+      <p>That is it for now, if you want to get in touch with Rodrigo, the best way to reach out to him is via <a href="https://twitter.com/rodrigoj_el" rel="noopener">Twitter</a></p>
+      <p>Cheers! ❤️</p>
+    </main>
+  </SiteFrame>
+</Base>
