@@ -1,0 +1,148 @@
+---
+import { CV_PATH, cvAvailable } from "../utils/cv";
+
+const commands = ["help", "about", "blog", "cv", "github", "clear"];
+---
+<section class="terminal" data-cv={cvAvailable ? CV_PATH : ""} aria-label="Terminal">
+  <p class="boot">SWAN STATION · WORKSTATION 4 8 15 16 23 42</p>
+  <p class="boot">Initializing web site... ok</p>
+  <p class="boot">Session opened for rodrigo.</p>
+  <p class="boot">Type <button type="button" data-cmd="help">help</button> to list commands.</p>
+  <div class="history" aria-live="polite"></div>
+  <form class="line" autocomplete="off">
+    <label for="term-input" class="prompt">&gt;</label>
+    <input id="term-input" name="cmd" type="text" spellcheck="false" autocapitalize="none" autocorrect="off" enterkeyhint="go" />
+    <span class="cursor" aria-hidden="true">█</span>
+  </form>
+  <noscript>
+    <p><a href="/about">about</a> · <a href="/blog">blog</a> · <a href="https://github.com/rodrigojv">github</a></p>
+  </noscript>
+  <template id="cmd-list">
+    {commands.map((c) => <button type="button" data-cmd={c}>{c}</button>)}
+  </template>
+</section>
+
+<style>
+  .terminal { padding-top: 8px; }
+  .boot, .out { margin: 0 0 6px; }
+  .terminal.booting { animation: flicker 0.6s steps(6) 1; }
+  button {
+    font: inherit;
+    color: var(--accent);
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .echo { color: var(--accent); }
+  .line { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+  .line input {
+    flex: 1;
+    min-width: 0;
+    font: inherit;
+    color: var(--fg);
+    background: none;
+    border: 0;
+    outline: 0;
+    caret-color: transparent;
+  }
+  .line:focus-within .cursor { opacity: 1; }
+  .cursor { color: var(--accent); animation: blink 1.1s infinite; order: 3; }
+  .line input:focus-visible { outline: none; }
+  @keyframes blink { 50% { opacity: 0.15; } }
+  @keyframes flicker { 0% { opacity: 0.2; } 30% { opacity: 1; } 45% { opacity: 0.5; } 100% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .terminal.booting, .cursor { animation: none; }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>(".terminal")!;
+  const history = root.querySelector<HTMLElement>(".history")!;
+  const form = root.querySelector<HTMLFormElement>(".line")!;
+  const input = root.querySelector<HTMLInputElement>("input")!;
+  const list = root.querySelector<HTMLTemplateElement>("#cmd-list")!;
+  const cvPath = root.dataset.cv ?? "";
+
+  try {
+    if (!sessionStorage.getItem("booted")) {
+      sessionStorage.setItem("booted", "1");
+      root.classList.add("booting");
+    }
+  } catch {}
+
+  function print(...nodes: (string | Node)[]) {
+    const p = document.createElement("p");
+    p.className = "out";
+    p.append(...nodes);
+    history.append(p);
+    return p;
+  }
+
+  function link(text: string, href: string, external = false) {
+    const a = document.createElement("a");
+    a.textContent = text;
+    a.href = href;
+    if (external) {
+      a.target = "_blank";
+      a.rel = "noopener";
+    }
+    return a;
+  }
+
+  const commands: Record<string, () => void> = {
+    help() {
+      const p = print("Commands: ");
+      list.content.querySelectorAll("button").forEach((b, i) => {
+        if (i) p.append(" ");
+        p.append(b.cloneNode(true));
+      });
+    },
+    about() {
+      location.href = "/about";
+    },
+    blog() {
+      location.href = "/blog";
+    },
+    cv() {
+      if (cvPath) print("rodrigo-villalba.pdf ", link("→ open", cvPath));
+      else print("cv: not available yet.");
+    },
+    github() {
+      window.open("https://github.com/rodrigojv", "_blank", "noopener");
+      print("Opening github.com/rodrigojv...");
+    },
+    clear() {
+      history.replaceChildren();
+    },
+  };
+
+  function run(raw: string) {
+    const name = raw.trim().toLowerCase();
+    if (!name) return;
+    if (name !== "clear") {
+      const echo = print(`> ${raw.trim()}`);
+      echo.classList.add("echo");
+    }
+    const fn = Object.hasOwn(commands, name) ? commands[name] : undefined;
+    if (fn) fn();
+    else print(`${name}: command not found. Try help.`);
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    run(input.value);
+    input.value = "";
+  });
+
+  root.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>("[data-cmd]");
+    if (btn) run(btn.dataset.cmd!);
+    else if (!(e.target as HTMLElement).closest("a")) input.focus();
+  });
+
+  // Sin autofocus al cargar para no abrir el teclado en táctil.
+  if (!matchMedia("(pointer: coarse)").matches) input.focus();
+</script>
