@@ -63,8 +63,8 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 }
 .key:hover { transform: translateY(1px); box-shadow: 0 2px 0 var(--plastic-shade), 0 4px 6px rgb(0 0 0 / 0.25); }
 .key:active, .key[aria-current="page"] { transform: translateY(3px); box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.3); }
-.key[aria-current="page"] { background: #cdc3a6; }
-.key[aria-current="page"]::before {
+.key[aria-current="page"], .key[aria-selected="true"] { background: #cdc3a6; transform: translateY(3px); box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.3); }
+.key[aria-current="page"]::before, .key[aria-selected="true"]::before {
   content: "";
   width: 7px; height: 7px;
   margin-right: 8px;
@@ -252,10 +252,6 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 }
 .tray nav, .tray .ext { display: flex; flex-direction: column; gap: 8px; }
 .tray .ext { padding-top: 10px; border-top: 2px solid var(--plastic-shade); }
-.keypair { display: flex; gap: 6px; }
-.keypair .key:first-child { flex: 1; }
-.keypair .dl { padding: 0 0.8rem; justify-content: center; font-size: 1.1rem; }
-.tray .keypair .key:first-child { justify-content: flex-start; }
 .tray .key { min-height: 2.3rem; justify-content: flex-start; padding-left: 12px; }
 
 .paper {
@@ -316,6 +312,16 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
 .back { display: inline-block; margin: 0 0 20px; font: 700 1.05rem var(--label); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
 .back:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .post-end { margin-top: 48px; padding-top: 16px; border-top: 2px dashed var(--ink-dim); }
+
+.cv-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.tabs { display: flex; gap: 8px; }
+.cv-panel { max-width: none; font-size: 1.02rem; line-height: 1.55; }
+.cv-panel h1 { font-size: clamp(2rem, 4vw, 2.6rem); }
+.cv-panel h2 { font-size: 1.5rem; border-bottom: 2px solid var(--ink); padding-bottom: 2px; margin-top: 1.4em; }
+.cv-panel h3 { font-size: 1.25rem; }
+.cv-panel ul { padding-left: 1.2em; }
+.cv-panel li { margin-bottom: 0.3em; }
+.js .cv-panel:not(.active) { display: none; }
 
 .cv-block { list-style: none; margin: 0 0 1.1em; padding: 0; }
 .cv-block li { margin-bottom: 0.4em; }

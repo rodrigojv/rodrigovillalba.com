@@ -1,7 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
 import SiteFrame from "../components/SiteFrame.astro";
-import { CV_FILES } from "../utils/cv";
 ---
 <Base title="About · Rodrigo Villalba" description="Rodrigo Villalba, Senior Full Stack Developer from Paraguay with over 16 years building software. TypeScript, React, Node.js and Java/Spring.">
   <SiteFrame>
@@ -18,14 +17,8 @@ import { CV_FILES } from "../utils/cv";
       <h2>Non-technical interests</h2>
       <p>When he is not being technical, Rodrigo enjoys spending time running, meditating and reading. His favorite type of books are the mind expanding ones and memoirs.</p>
       <p>He also loves playing the guitar and watching movies and TV shows.</p>
-      <h2 id="curriculum">Curriculum</h2>
-      <ul class="cv-block">
-        {CV_FILES.map((cv) => (
-          <li>
-            {cv.label}: <a href={cv.path} hreflang={cv.lang}>Ver PDF</a> · <a href={cv.path} download>Descargar</a>
-          </li>
-        ))}
-      </ul>
+      <h2>Curriculum</h2>
+      <p><a href="/cv">Read my CV</a> in English or Spanish, and download it as PDF.</p>
       <p>That is it for now, if you want to get in touch with Rodrigo, the best way to reach out to him is via <a href="https://www.linkedin.com/in/rojv/" rel="noopener">LinkedIn</a></p>
       <p>Cheers! ❤️</p>
     </main>

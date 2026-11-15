@@ -1,5 +1,4 @@
 ---
-import CvKeys from "./CvKeys.astro";
 const path = Astro.url.pathname;
 const current = (href: string) =>
   path === href || path.startsWith(`${href}/`) || (href === "/blog" && path.startsWith("/post/"));
@@ -12,13 +11,11 @@ const current = (href: string) =>
         <a class="key" href="/">Home</a>
         <a class="key" href="/about" aria-current={current("/about") ? "page" : undefined}>About</a>
         <a class="key" href="/blog" aria-current={current("/blog") ? "page" : undefined}>Blog</a>
+        <a class="key" href="/cv" aria-current={current("/cv") ? "page" : undefined}>CV</a>
       </nav>
       <div class="ext" aria-label="Perfiles">
         <a class="key" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
         <a class="key" href="https://www.linkedin.com/in/rojv/" rel="noopener">LinkedIn</a>
-      </div>
-      <div class="ext" aria-label="Curriculum">
-        <CvKeys />
       </div>
     </div>
   </aside>

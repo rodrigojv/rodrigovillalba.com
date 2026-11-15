@@ -1,0 +1,74 @@
+---
+import { getEntry, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import SiteFrame from "../../components/SiteFrame.astro";
+import { CV_LANGS } from "../../utils/cv";
+
+const panels = await Promise.all(
+  CV_LANGS.map(async (cv) => {
+    const entry = (await getEntry("cv", cv.lang))!;
+    return { ...cv, Content: (await render(entry)).Content };
+  }),
+);
+---
+<Base title="CV · Rodrigo Villalba" description="Curriculum of Rodrigo Villalba, Senior Full Stack Developer, in English and Spanish.">
+  <SiteFrame>
+    <main>
+      <script is:inline>document.documentElement.classList.add("js");</script>
+      <div class="cv-bar">
+        <div class="tabs" role="tablist" aria-label="Language">
+          {panels.map((p) => (
+            <button type="button" class="key" role="tab" id={`tab-${p.lang}`} aria-controls={`panel-${p.lang}`} data-lang={p.lang} lang={p.lang}>
+              {p.label}
+            </button>
+          ))}
+        </div>
+        <a class="key" id="cv-download" href={panels[0].pdf} download>Download PDF</a>
+      </div>
+      {panels.map((p) => (
+        <section class="prose cv-panel" id={`panel-${p.lang}`} role="tabpanel" aria-labelledby={`tab-${p.lang}`} data-pdf={p.pdf} lang={p.lang}>
+          <p.Content />
+        </section>
+      ))}
+    </main>
+  </SiteFrame>
+</Base>
+
+<script>
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>("[role=tab]")];
+  const panels = [...document.querySelectorAll<HTMLElement>(".cv-panel")];
+  const download = document.getElementById("cv-download") as HTMLAnchorElement;
+  const labels: Record<string, string> = { en: "Download PDF", es: "Descargar PDF" };
+
+  function select(lang: string, updateHash = true) {
+    tabs.forEach((t) => {
+      const on = t.dataset.lang === lang;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach((p) => p.classList.toggle("active", p.lang === lang));
+    const current = panels.find((p) => p.lang === lang)!;
+    download.href = current.dataset.pdf!;
+    download.textContent = labels[lang] ?? "Download PDF";
+    download.lang = lang;
+    document.documentElement.lang = lang;
+    if (updateHash) history.replaceState(null, "", `#${lang}`);
+  }
+
+  const initial = location.hash.slice(1);
+  select(tabs.some((t) => t.dataset.lang === initial) ? initial : "en", false);
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => select(tab.dataset.lang!));
+    tab.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+      next.focus();
+      select(next.dataset.lang!);
+    });
+  });
+  addEventListener("hashchange", () => {
+    const lang = location.hash.slice(1);
+    if (tabs.some((t) => t.dataset.lang === lang)) select(lang, false);
+  });
+</script>
