@@ -5,7 +5,7 @@ La estación de trabajo de Swan vista de frente: monitor y teclado beige (plást
 
 ## Color
 - Pared `#8a9c86`, plástico `#d9d0b7`, tecla `#ebe4cf`, tecla oscura `#34322d`, tecla EXECUTE `#b5412a`.
-- Pantalla `#050805`, fósforo `#8df2a0`, fósforo atenuado `#58a66b`.
+- Pantalla `#020603`, fósforo `#63ff7d` con resplandor `rgb(87 255 117 / 0.45)`, fósforo atenuado `#48b85a` (valores tomados del pen de referencia).
 - Papel `#f6f2e4`, franja `#e6efdc`, tinta `#1d1b17`, tinta atenuada `#55503f`. Foco `#e0541f`.
 
 ## Tipografía

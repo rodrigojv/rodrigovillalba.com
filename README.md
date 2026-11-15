@@ -9,3 +9,7 @@ npx wrangler deploy   # publica dist/ en Cloudflare Workers
 ```
 
 Los CV (EN y ES) salen de `../resume`: `scripts/build-cv.sh` los regenera en `public/cv/` (requiere pandoc y Chrome).
+
+## Créditos
+
+Clic de teclado: `public/sounds/key.mp3`, "Single Key Press" de DRAGON-STUDIO en Pixabay, bajo la Pixabay Content License. Los demás sonidos de la home se sintetizan con Web Audio.

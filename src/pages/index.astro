@@ -107,8 +107,32 @@ const questions = [
     osc.start(t);
     osc.stop(t + dur + 0.02);
   }
+  // Clic de teclado grabado (DRAGON-STUDIO, Pixabay). Se decodifica tras el primer gesto.
+  let keyBuffer: AudioBuffer | undefined;
+  async function loadKey() {
+    try {
+      ctx ??= new AudioContext();
+      const res = await fetch("/sounds/key.mp3");
+      keyBuffer = await ctx.decodeAudioData(await res.arrayBuffer());
+    } catch {}
+  }
+  for (const ev of ["pointerdown", "keydown"]) document.addEventListener(ev, loadKey, { once: true });
+
+  function keyClick() {
+    if (!soundOn) return;
+    if (!ctx || !keyBuffer) return tone(1900 + Math.random() * 300, 0, 0.025, "square", 0.05);
+    void ctx.resume();
+    const src = ctx.createBufferSource();
+    const amp = ctx.createGain();
+    src.buffer = keyBuffer;
+    src.playbackRate.value = 0.96 + Math.random() * 0.1;
+    amp.gain.value = 0.8;
+    src.connect(amp).connect(ctx.destination);
+    src.start();
+  }
+
   const sfx = {
-    key: () => tone(1900 + Math.random() * 300, 0, 0.025, "square", 0.05),
+    key: keyClick,
     tick: () => tone(1200, 0, 0.012, "square", 0.025),
     beep: () => tone(1000, 0, 0.1, "square", 0.1),
     buzz: () => tone(140, 0, 0.28, "sawtooth", 0.12, 90),
