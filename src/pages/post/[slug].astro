@@ -29,8 +29,10 @@ const jsonLd = {
 ---
 <Base title={`${title} · Rodrigo Villalba`} description={summary} type="article" publishedTime={date} image={image} jsonLd={jsonLd}>
   <SiteFrame><main><article>
+    <a class="back" href="/blog">← All posts</a>
     <h1>{title}</h1>
     <p class="meta">PUBLISHED {formatDate(date)} · {readingMinutes(post.body)} MIN · {tags.join(", ")}</p>
     <div class="prose"><Content /></div>
+    <p class="post-end"><a class="back" href="/blog">← Back to all posts</a></p>
   </article></main></SiteFrame>
 </Base>

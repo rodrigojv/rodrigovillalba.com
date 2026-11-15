@@ -6,14 +6,16 @@ const current = (href: string) =>
 <div class="shell">
   <aside class="rail">
     <a class="brand" href="/">Rodrigo<br />Villalba</a>
-    <nav aria-label="Principal">
-      <a class="key dark" href="/">Home</a>
-      <a class="key" href="/about" aria-current={current("/about") ? "page" : undefined}>About</a>
-      <a class="key" href="/blog" aria-current={current("/blog") ? "page" : undefined}>Blog</a>
-    </nav>
-    <div class="ext" aria-label="Perfiles">
-      <a class="key dark" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
-      <a class="key dark" href="https://www.linkedin.com/in/rodrigo-jos%C3%A9-villalba-otto-0b313618/" rel="noopener">LinkedIn</a>
+    <div class="tray">
+      <nav aria-label="Principal">
+        <a class="key" href="/">Home</a>
+        <a class="key" href="/about" aria-current={current("/about") ? "page" : undefined}>About</a>
+        <a class="key" href="/blog" aria-current={current("/blog") ? "page" : undefined}>Blog</a>
+      </nav>
+      <div class="ext" aria-label="Perfiles">
+        <a class="key" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
+        <a class="key" href="https://www.linkedin.com/in/rodrigo-jos%C3%A9-villalba-otto-0b313618/" rel="noopener">LinkedIn</a>
+      </div>
     </div>
   </aside>
   <div class="paper"><slot /></div>

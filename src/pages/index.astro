@@ -16,6 +16,7 @@ const questions = [
   <div class="desk">
     <div class="workstation">
       <div class="monitor">
+        <p class="postit" aria-hidden="true">4 8 15<br />16 23 42</p>
         <div class="screen" id="screen">
           <p data-step style="--i:0">SWAN STATION · INITIALIZING WEB SITE</p>
           {questions.map((item, n) => (
@@ -29,7 +30,7 @@ const questions = [
           ))}
           <p class="q" data-step style="--i:11">&gt;<span class="cursor">█</span></p>
         </div>
-        <div class="plate" aria-hidden="true"><span>SWAN</span><span>4 8 15 16 23 42</span></div>
+        <div class="plate" aria-hidden="true"><span>SWAN</span></div>
       </div>
       <div class="keyboard">
         <div class="deco-rows" aria-hidden="true">
@@ -38,9 +39,9 @@ const questions = [
           </div>
         </div>
         <div class="keys">
-          <a class="key dark" href="/about">About</a>
-          <a class="key dark" href="/blog">Blog</a>
-          <a class="key dark" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
+          <a class="key" href="/about">About</a>
+          <a class="key" href="/blog">Blog</a>
+          <a class="key" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
           <span class="key space" aria-hidden="true"></span>
           <button type="button" class="key execute" id="execute">Execute</button>
         </div>
@@ -50,8 +51,8 @@ const questions = [
       <h1>Rodrigo Villalba</h1>
       <p>A software developer from Paraguay. Web development, React and JavaScript.</p>
       <div class="ext">
-        <a class="key dark" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
-        <a class="key dark" href="https://www.linkedin.com/in/rodrigo-jos%C3%A9-villalba-otto-0b313618/" rel="noopener">LinkedIn</a>
+        <a class="key" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
+        <a class="key" href="https://www.linkedin.com/in/rodrigo-jos%C3%A9-villalba-otto-0b313618/" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </div>

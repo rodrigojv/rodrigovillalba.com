@@ -74,19 +74,26 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   box-shadow: 0 3px 0 var(--plastic-shade), 0 6px 8px rgb(0 0 0 / 0.25);
   transition: transform 90ms ease-out, box-shadow 90ms ease-out;
 }
-.key.dark { background: var(--key-dark); color: var(--keycap); }
 .key:hover { transform: translateY(1px); box-shadow: 0 2px 0 var(--plastic-shade), 0 4px 6px rgb(0 0 0 / 0.25); }
-.key:active, .key[aria-current="page"] { transform: translateY(3px); box-shadow: 0 0 0 var(--plastic-shade), 0 1px 2px rgb(0 0 0 / 0.3); }
-.key[aria-current="page"] { background: var(--active); color: var(--on-active); }
+.key:active, .key[aria-current="page"] { transform: translateY(3px); box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.3); }
+.key[aria-current="page"] { background: #cdc3a6; }
+.key[aria-current="page"]::before {
+  content: "";
+  width: 7px; height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--active);
+  box-shadow: 0 0 5px var(--active);
+}
+.key[rel~="noopener"]::after { content: "\2197"; margin-left: 6px; font-size: 0.9em; opacity: 0.7; }
 
 /* Home: monitor, teclado y rótulo. */
 .desk {
   display: grid;
   grid-template-columns: minmax(0, 1.9fr) minmax(220px, 1fr);
   gap: clamp(24px, 5vw, 72px);
-  align-items: end;
+  align-items: start;
   max-width: 1240px;
-  min-height: 100vh;
   margin: 0 auto;
   padding: clamp(16px, 3vw, 32px) clamp(16px, 4vw, 48px);
 }
@@ -144,6 +151,28 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .screen [data-step] { opacity: 0; animation: appear 1ms linear forwards; animation-delay: calc(var(--i) * 0.45s); }
 @keyframes appear { to { opacity: 1; } }
 
+.postit {
+  position: absolute;
+  top: -14px;
+  right: clamp(8px, 3vw, 36px);
+  z-index: 2;
+  padding: 14px 16px 12px;
+  background: #f3e47c;
+  color: #3a3420;
+  font: 600 clamp(1.3rem, 2.2vw, 1.7rem)/1.1 "Caveat", cursive;
+  letter-spacing: 0.06em;
+  transform: rotate(3deg);
+  box-shadow: 0 8px 12px rgb(0 0 0 / 0.28);
+}
+.postit::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 10px;
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.07), transparent);
+}
+.monitor { position: relative; }
+
 .plate {
   display: flex;
   justify-content: space-between;
@@ -169,7 +198,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   flex: 1;
   min-height: 1.9rem;
   border-radius: 4px;
-  background: var(--keycap);
+  background: #cdc3a6;
   box-shadow: 0 2px 0 var(--plastic-shade);
   color: var(--ink-dim);
   font: 600 0.8rem/1.9rem var(--label);
@@ -178,7 +207,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 }
 .keys .space { flex: 1 1 8rem; }
 
-.label-col { align-self: center; color: var(--ink); }
+.label-col { margin-top: clamp(16px, 8vh, 96px); color: var(--ink); }
 .label-col h1 {
   margin: 0 0 12px;
   font: 700 clamp(2.6rem, 6vw, 4.4rem)/0.95 var(--label);
@@ -198,7 +227,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   margin: 0 auto;
   padding: clamp(16px, 4vw, 48px) clamp(12px, 4vw, 48px) 64px;
 }
-.rail { position: sticky; top: 24px; align-self: start; display: flex; flex-direction: column; gap: 14px; }
+.rail { position: sticky; top: 16px; align-self: start; display: flex; flex-direction: column; gap: 14px; }
 .rail .brand {
   font: 700 2rem/0.95 var(--label);
   text-transform: uppercase;
@@ -206,8 +235,18 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   color: var(--brand);
   text-shadow: 0 2px 0 rgb(0 0 0 / 0.25);
 }
-.rail nav { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
-.rail .ext { display: grid; grid-template-columns: 1fr; gap: 10px; padding-top: 14px; border-top: 1px solid rgb(0 0 0 / 0.25); }
+.tray {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 8px 8px 14px 14px;
+  background: linear-gradient(to bottom, var(--plastic-shade), var(--plastic));
+  box-shadow: 0 12px 20px rgb(0 0 0 / 0.28);
+}
+.tray nav, .tray .ext { display: flex; flex-direction: column; gap: 8px; }
+.tray .ext { padding-top: 10px; border-top: 2px solid var(--plastic-shade); }
+.tray .key { min-height: 2.3rem; justify-content: flex-start; padding-left: 12px; }
 
 .paper {
   background:
@@ -264,6 +303,10 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
 .post-list .summary { margin: 6px 0 0; color: var(--ink-dim); font-size: 0.95rem; }
 .post-list .tags { margin: 6px 0 0; display: flex; gap: 10px; flex-wrap: wrap; font: 1.1rem var(--retro); color: var(--ink-dim); }
 
+.back { display: inline-block; margin: 0 0 20px; font: 700 1.05rem var(--label); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+.back:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+.post-end { margin-top: 48px; padding-top: 16px; border-top: 2px dashed var(--ink-dim); }
+
 .cv-block { display: flex; gap: 12px; flex-wrap: wrap; }
 .cv-block a { font-family: var(--label); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 
@@ -271,13 +314,16 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
   .desk { grid-template-columns: minmax(0, 1fr); min-height: 0; align-items: start; }
   .label-col { order: -1; }
   .deco-rows { display: none; }
+  .postit { top: auto; bottom: -16px; right: 14px; padding: 8px 12px; font-size: 1.2rem; }
+  .plate { margin-bottom: 4px; }
   .screen { aspect-ratio: auto; font-size: 1.25rem; }
 
   .shell { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .rail { position: static; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px; }
   .rail .brand { font-size: 1.6rem; flex: 1 0 100%; }
-  .rail nav { flex-direction: row; flex-wrap: wrap; }
-  .rail .ext { display: flex; flex-wrap: wrap; padding-top: 0; border-top: 0; }
+  .tray { flex-direction: row; flex-wrap: wrap; gap: 10px; flex: 1 0 100%; }
+  .tray nav, .tray .ext { flex-direction: row; flex-wrap: wrap; }
+  .tray .ext { padding: 0 0 0 10px; border-top: 0; border-left: 2px solid var(--plastic-shade); }
   .paper {
     padding: 24px 36px 40px;
     background:
