@@ -1,10 +1,74 @@
 ---
 import Base from "../layouts/Base.astro";
-import SiteFrame from "../components/SiteFrame.astro";
-import Terminal from "../components/Terminal.astro";
+
+const rows = [
+  ["ESC", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", "-", "RESET"],
+  ["CTRL", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "REPT"],
+  ["A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "RETURN"],
+];
+const questions = [
+  { q: "Who is Rodrigo Villalba and what does he do anyways?", label: "About page", href: "/about" },
+  { q: "Has he written any blog posts?", label: "Blog", href: "/blog" },
+  { q: "What about Open Source?", label: "github.com/rodrigojv", href: "https://github.com/rodrigojv", external: true },
+];
 ---
 <Base title="Rodrigo Villalba" description="Rodrigo Villalba, a software developer from Paraguay. Web development, React and JavaScript.">
-  <SiteFrame>
-    <main><Terminal /></main>
-  </SiteFrame>
+  <div class="desk">
+    <div class="workstation">
+      <div class="monitor">
+        <div class="screen" id="screen">
+          <p data-step style="--i:0">SWAN STATION · INITIALIZING WEB SITE</p>
+          {questions.map((item, n) => (
+            <div class="q">
+              <p data-step style={`--i:${n * 3 + 2}`}>&gt; {item.q}</p>
+              <p class="loading" data-step style={`--i:${n * 3 + 3}`}>Loading results...</p>
+              <p class="answer" data-step style={`--i:${n * 3 + 4}`}>
+                Results: <a href={item.href} rel={item.external ? "noopener" : undefined}>{item.label}</a>
+              </p>
+            </div>
+          ))}
+          <p class="q" data-step style="--i:11">&gt;<span class="cursor">█</span></p>
+        </div>
+        <div class="plate" aria-hidden="true"><span>SWAN</span><span>4 8 15 16 23 42</span></div>
+      </div>
+      <div class="keyboard">
+        <div class="deco-rows" aria-hidden="true">
+          <div class="keys deco">
+            {rows.map((row) => <div class="deco-row">{row.map((k) => <i>{k}</i>)}</div>)}
+          </div>
+        </div>
+        <div class="keys">
+          <a class="key dark" href="/about">About</a>
+          <a class="key dark" href="/blog">Blog</a>
+          <a class="key dark" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
+          <span class="key space" aria-hidden="true"></span>
+          <button type="button" class="key execute" id="execute">Execute</button>
+        </div>
+      </div>
+    </div>
+    <div class="label-col">
+      <h1>Rodrigo Villalba</h1>
+      <p>A software developer from Paraguay. Web development, React and JavaScript.</p>
+      <div class="ext">
+        <a class="key dark" href="https://twitter.com/rodrigoj_el" rel="noopener">Twitter</a>
+        <a class="key dark" href="https://www.linkedin.com/in/rodrigo-jos%C3%A9-villalba-otto-0b313618/" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
 </Base>
+
+<script>
+  // EXECUTE repite la carga de las respuestas.
+  const screen = document.getElementById("screen")!;
+  document.getElementById("execute")!.addEventListener("click", () => {
+    screen.querySelectorAll<HTMLElement>("[data-step]").forEach((el) => {
+      el.style.animation = "none";
+      void el.offsetWidth;
+      el.style.animation = "";
+    });
+  });
+</script>
+
+<style>
+  .execute { border: 0; cursor: pointer; font: inherit; font-family: var(--label); font-weight: 700; background: #b5412a; color: #f6e9d8; }
+</style>
