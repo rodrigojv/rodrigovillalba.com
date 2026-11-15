@@ -22,14 +22,14 @@ const questions = [
           <p data-step style="--i:0">SWAN STATION · INITIALIZING WEB SITE</p>
           {questions.map((item, n) => (
             <div class="q">
-              <p data-step style={`--i:${n * 3 + 2}`}>&gt; {item.q}</p>
+              <p data-step style={`--i:${n * 3 + 2}`}>&gt;: {item.q}</p>
               <p class="loading" data-step style={`--i:${n * 3 + 3}`}>Loading results...</p>
               <p class="answer" data-step style={`--i:${n * 3 + 4}`}>
                 Results: <a href={item.href} rel={item.external ? "noopener" : undefined}>{item.label}</a>
               </p>
             </div>
           ))}
-          <p class="q" data-step style="--i:11">&gt; <span id="entry"></span><span class="cursor">█</span></p>
+          <p class="q" data-step style="--i:11">&gt;: <span id="entry"></span><span class="cursor">█</span></p>
           </div>
           <div class="film" id="film" hidden></div>
         </div>
@@ -51,6 +51,7 @@ const questions = [
           <a class="key" href="/about">About</a>
           <a class="key" href="/blog">Blog</a>
           <a class="key" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
+          <button type="button" class="key" id="sound" aria-pressed="true" aria-label="Sound">Sound</button>
           <span class="key space" aria-hidden="true"></span>
           <button type="button" class="key execute" id="execute">Execute</button>
         </div>
@@ -83,6 +84,44 @@ const questions = [
     { text: "4. In case of doubt, read the CV.", link: { label: "Open CV", href: "/cv" } },
     { text: "Namaste. See you in 108 minutes." },
   ];
+
+  // Sonidos sintetizados con Web Audio: no hay archivos ni licencias de terceros.
+  const soundKey = document.getElementById("sound") as HTMLButtonElement;
+  let soundOn = true;
+  try { soundOn = localStorage.getItem("sound") !== "off"; } catch {}
+  soundKey.setAttribute("aria-pressed", String(soundOn));
+  let ctx: AudioContext | undefined;
+
+  function tone(freq: number, start: number, dur: number, type: OscillatorType = "square", gain = 0.12, endFreq = freq) {
+    if (!soundOn) return;
+    ctx ??= new AudioContext();
+    const t = ctx.currentTime + start;
+    const osc = ctx.createOscillator();
+    const amp = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, t);
+    osc.frequency.exponentialRampToValueAtTime(endFreq, t + dur);
+    amp.gain.setValueAtTime(gain, t);
+    amp.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(amp).connect(ctx.destination);
+    osc.start(t);
+    osc.stop(t + dur + 0.02);
+  }
+  const sfx = {
+    key: () => tone(1900 + Math.random() * 300, 0, 0.025, "square", 0.05),
+    tick: () => tone(1200, 0, 0.012, "square", 0.025),
+    beep: () => tone(1000, 0, 0.1, "square", 0.1),
+    buzz: () => tone(140, 0, 0.28, "sawtooth", 0.12, 90),
+    powerDown: () => tone(700, 0, 0.9, "sawtooth", 0.08, 40),
+    ready: () => { tone(660, 0, 0.09); tone(880, 0.1, 0.09); tone(1320, 0.2, 0.16); },
+  };
+
+  soundKey.addEventListener("click", () => {
+    soundOn = !soundOn;
+    soundKey.setAttribute("aria-pressed", String(soundOn));
+    try { localStorage.setItem("sound", soundOn ? "on" : "off"); } catch {}
+    sfx.beep();
+  });
 
   const screen = document.getElementById("screen")!;
   const consoleEl = document.getElementById("console")!;
@@ -124,6 +163,7 @@ const questions = [
     busy = true;
     skip = false;
     status.textContent = "Orientation film started.";
+    sfx.powerDown();
     entry.textContent = "";
     if (!reduced) {
       screen.classList.add("off");
@@ -142,7 +182,7 @@ const questions = [
       else {
         for (const ch of line.text) {
           p.textContent += ch;
-          if (!skip) await wait(ch === "." || ch === "," ? 140 : 22);
+          if (!skip) { if (ch !== " ") sfx.tick(); await wait(ch === "." || ch === "," ? 140 : 22); }
         }
       }
       if (line.link) {
@@ -156,6 +196,7 @@ const questions = [
     const hint = document.createElement("p");
     hint.className = "hint";
     hint.textContent = "Press EXECUTE to return.";
+    sfx.ready();
     film.append(hint);
     inFilm = true;
     busy = false;
@@ -170,17 +211,21 @@ const questions = [
 
   function type(digit: string) {
     if (busy || entry.textContent!.length >= SEQUENCE.length) return;
+    sfx.key();
     entry.textContent += digit;
   }
 
   function erase() {
-    if (!busy) entry.textContent = entry.textContent!.slice(0, -1);
+    if (busy) return;
+    sfx.key();
+    entry.textContent = entry.textContent!.slice(0, -1);
   }
 
   function execute() {
     if (busy) return;
     const typed = entry.textContent!;
     if (typed === SEQUENCE) return void playFilm();
+    typed ? sfx.buzz() : sfx.beep();
     entry.textContent = "";
     // Un código incorrecto solo se borra; el sitio no reacciona.
     if (inFilm) leaveFilm();
