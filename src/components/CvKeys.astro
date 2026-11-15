@@ -1,0 +1,9 @@
+---
+import { CV_FILES } from "../utils/cv";
+---
+{CV_FILES.map((cv) => (
+  <div class="keypair">
+    <a class="key" href={cv.path} target="_blank" rel="noopener" hreflang={cv.lang}>CV {cv.lang.toUpperCase()}</a>
+    <a class="key dl" href={cv.path} download aria-label={`Download CV in ${cv.label}`} title={`Download CV (${cv.label})`}>↓</a>
+  </div>
+))}
