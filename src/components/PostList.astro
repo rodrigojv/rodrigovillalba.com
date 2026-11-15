@@ -1,0 +1,23 @@
+---
+import { type Post, formatDate, readingMinutes } from "../utils/posts";
+
+type Props = { posts: Post[] };
+const { posts } = Astro.props;
+---
+<ul class="post-list">
+  {posts.map((post) => {
+    const external = post.data.guest_post_url;
+    return (
+      <li>
+        <a href={external ?? `/post/${post.id}`} rel={external ? "noopener" : undefined}>
+          <span class="meta">
+            {formatDate(post.data.date)} · {external ? "EXT" : `${readingMinutes(post.body)} min`}
+          </span>
+          <span class="title">{post.data.title}</span>
+        </a>
+        {post.data.summary && <p class="summary">{post.data.summary}</p>}
+        <p class="tags">{post.data.tags.map((t) => <span>[{t}]</span>)}</p>
+      </li>
+    );
+  })}
+</ul>

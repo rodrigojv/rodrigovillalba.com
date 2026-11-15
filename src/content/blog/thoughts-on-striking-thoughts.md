@@ -6,7 +6,7 @@ date: "2021-02-17T19:53:51.635Z"
 summary: "I always thought of Bruce Lee as one of the most influential figures in movies and martial arts but I have never thought of him as I writer, let alone a great philosopher."
 ---
 
-![Atomic Habits](/posts/images/StrikingThoughts_book.jpg)
+![Striking Thoughts](/posts/images/StrikingThoughts_book.jpg)
 
 I always thought of Bruce Lee as one of the most influential figures in movies and martial arts but I have never thought of him as I writer, let alone a great philosopher. I have many times come across with his famous ["Be like water, my friend"](https://www.youtube.com/watch?v=cJMwBwFj5nQ) video but I thought that was part of some kind of gimmick he had.
 

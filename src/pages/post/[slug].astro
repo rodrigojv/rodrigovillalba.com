@@ -1,0 +1,35 @@
+---
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { getPostsByDate, formatDate, readingMinutes, imagePath } from "../../utils/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPostsByDate();
+  return posts
+    .filter((p) => !p.data.guest_post_url)
+    .map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, summary, date, author, tags } = post.data;
+const image = imagePath(post.data.image);
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description: summary,
+  datePublished: date.toISOString(),
+  author: { "@type": "Person", name: author },
+  mainEntityOfPage: url,
+  ...(image && { image: new URL(image, Astro.site).href }),
+};
+---
+<Base title={`${title} · Rodrigo Villalba`} description={summary} type="article" publishedTime={date} image={image} jsonLd={jsonLd}>
+  <article>
+    <h1>{title}</h1>
+    <p class="meta">PUBLISHED {formatDate(date)} · {readingMinutes(post.body)} MIN · {tags.join(", ")}</p>
+    <Content />
+  </article>
+</Base>
