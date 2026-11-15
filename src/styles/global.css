@@ -29,18 +29,58 @@
 html { background: var(--wall); }
 
 body {
+  position: relative;
+  z-index: 0;
   margin: 0;
   min-height: 100vh;
-  /* Grano de pared de búnker (ruido SVG) y viñeta; sin líneas ni patrones visibles. */
+  /* Grano de ruido SVG y viñeta; las estrellas van en body::before. */
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
     radial-gradient(ellipse at 40% 20%, transparent 40%, rgb(0 0 0 / 0.35) 100%),
     var(--wall);
+  background-size: 220px 220px, auto, auto;
   background-attachment: fixed;
   color: var(--ink);
   font-family: var(--text);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+/* Estrellas dispersas: una baldosa de 420 px fija detrás del contenido. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 116px 189px, rgb(235 245 225 / 0.35) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 98px 360px, rgb(235 245 225 / 0.25) 0.6px, transparent 1.2px),
+    radial-gradient(circle at 70px 126px, rgb(235 245 225 / 0.35) 1.6px, transparent 2.2px),
+    radial-gradient(circle at 205px 328px, rgb(235 245 225 / 0.7) 0.6px, transparent 1.2px),
+    radial-gradient(circle at 249px 232px, rgb(235 245 225 / 0.7) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 293px 98px, rgb(235 245 225 / 0.25) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 248px 119px, rgb(235 245 225 / 0.5) 0.6px, transparent 1.2px),
+    radial-gradient(circle at 266px 208px, rgb(235 245 225 / 0.7) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 371px 58px, rgb(235 245 225 / 0.25) 1px, transparent 1.6px),
+    radial-gradient(circle at 416px 32px, rgb(235 245 225 / 0.7) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 55px 338px, rgb(235 245 225 / 0.5) 0.6px, transparent 1.2px),
+    radial-gradient(circle at 120px 353px, rgb(235 245 225 / 0.7) 0.6px, transparent 1.2px),
+    radial-gradient(circle at 332px 264px, rgb(235 245 225 / 0.35) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 310px 32px, rgb(235 245 225 / 0.25) 1.6px, transparent 2.2px),
+    radial-gradient(circle at 250px 359px, rgb(235 245 225 / 0.35) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 296px 233px, rgb(235 245 225 / 0.7) 1.6px, transparent 2.2px),
+    radial-gradient(circle at 146px 285px, rgb(235 245 225 / 0.7) 1px, transparent 1.6px),
+    radial-gradient(circle at 69px 81px, rgb(235 245 225 / 0.25) 1.6px, transparent 2.2px),
+    radial-gradient(circle at 272px 353px, rgb(235 245 225 / 0.5) 1px, transparent 1.6px),
+    radial-gradient(circle at 329px 253px, rgb(235 245 225 / 0.35) 1.6px, transparent 2.2px),
+    radial-gradient(circle at 158px 76px, rgb(235 245 225 / 0.5) 1px, transparent 1.6px),
+    radial-gradient(circle at 261px 336px, rgb(235 245 225 / 0.35) 0.6px, transparent 1.2px),
+    radial-gradient(circle at 176px 124px, rgb(235 245 225 / 0.5) 0.6px, transparent 1.2px),
+    radial-gradient(circle at 175px 112px, rgb(235 245 225 / 0.25) 1px, transparent 1.6px),
+    radial-gradient(circle at 216px 130px, rgb(235 245 225 / 0.5) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 361px 213px, rgb(235 245 225 / 0.7) 0.8px, transparent 1.4px);
+  background-size: 420px 420px;
 }
 
 ::selection { background: var(--phosphor); color: var(--screen); }
@@ -97,7 +137,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   background: linear-gradient(160deg, #e2dac3, var(--plastic) 60%, #cdc3a8);
   border-radius: 22px 22px 8px 8px;
   padding: clamp(14px, 3vw, 34px) clamp(14px, 3vw, 34px) clamp(10px, 2vw, 18px);
-  box-shadow: 0 18px 28px rgb(0 0 0 / 0.28), inset 0 2px 0 rgb(255 255 255 / 0.5);
+  box-shadow: 0 18px 28px rgb(0 0 0 / 0.4), 0 0 90px rgb(87 255 117 / 0.1), inset 0 2px 0 rgb(255 255 255 / 0.5);
 }
 
 .screen {

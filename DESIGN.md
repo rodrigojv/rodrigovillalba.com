@@ -4,7 +4,7 @@
 La estación de trabajo de Swan vista de frente: monitor y teclado beige (plástico de Apple II Plus) sobre una pared verde institucional. El fósforo verde existe solo dentro de la pantalla. Lo que se lee largo (About, Blog, posts) va en papel continuo con perforaciones y franjas verdes, no en la pantalla.
 
 ## Color
-- Pared `#26302a` (verde carbón con grano fino y viñeta), plástico `#d9d0b7`, tecla `#ebe4cf`, tecla oscura `#34322d`, tecla EXECUTE `#b5412a`.
+- Pared `#26302a` (verde carbón con grano, viñeta y estrellas dispersas), plástico `#d9d0b7`, tecla `#ebe4cf`, tecla oscura `#34322d`, tecla EXECUTE `#b5412a`.
 - Pantalla `#020603`, fósforo `#63ff7d` con resplandor `rgb(87 255 117 / 0.45)`, fósforo atenuado `#48b85a` (valores tomados del pen de referencia).
 - Papel `#f6f2e4`, franja `#e6efdc`, tinta `#1d1b17`, tinta atenuada `#55503f`. Foco `#e0541f`.
 
