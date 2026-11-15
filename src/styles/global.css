@@ -294,7 +294,8 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
 .back:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .post-end { margin-top: 48px; padding-top: 16px; border-top: 2px dashed var(--ink-dim); }
 
-.cv-block { display: flex; gap: 12px; flex-wrap: wrap; }
+.cv-block { list-style: none; margin: 0 0 1.1em; padding: 0; }
+.cv-block li { margin-bottom: 0.4em; }
 .cv-block a { font-family: var(--label); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 
 @media (max-width: 800px) {
