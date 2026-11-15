@@ -15,10 +15,26 @@
   --phosphor: #8df2a0;
   --phosphor-dim: #58a66b;
   --focus: #e0541f;
+  --on-wall: #1d241c;
+  --brand: #f1ecd9;
+  --active: #58a66b;
+  --on-active: #050805;
   --retro: "VT323", ui-monospace, monospace;
   --label: "Barlow Condensed", "Arial Narrow", sans-serif;
   --text: "Literata Variable", Georgia, serif;
   --code: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* Paletas alternativas: ?palette=pizarra | concreto | oliva */
+:root[data-palette="pizarra"] {
+  --wall: #3f566a; --wall-dark: #2d3f50;
+  --on-wall: #e9e4d2; --brand: #f1ecd9;
+  --key-dark: #2a2926; --active: #e0902a; --on-active: #1d1b17;
+}
+:root[data-palette="concreto"] {
+  --wall: #b7b1a2; --wall-dark: #9a9484;
+  --on-wall: #1f1d18; --brand: #1f1d18;
+  --key-dark: #2f2e2a; --active: #c9501f; --on-active: #f6e9d8;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -61,7 +77,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .key.dark { background: var(--key-dark); color: var(--keycap); }
 .key:hover { transform: translateY(1px); box-shadow: 0 2px 0 var(--plastic-shade), 0 4px 6px rgb(0 0 0 / 0.25); }
 .key:active, .key[aria-current="page"] { transform: translateY(3px); box-shadow: 0 0 0 var(--plastic-shade), 0 1px 2px rgb(0 0 0 / 0.3); }
-.key[aria-current="page"] { background: var(--phosphor-dim); color: var(--screen); }
+.key[aria-current="page"] { background: var(--active); color: var(--on-active); }
 
 /* Home: monitor, teclado y rótulo. */
 .desk {
@@ -167,10 +183,10 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   margin: 0 0 12px;
   font: 700 clamp(2.6rem, 6vw, 4.4rem)/0.95 var(--label);
   text-transform: uppercase;
-  color: #f1ecd9;
+  color: var(--brand);
   text-shadow: 0 2px 0 rgb(0 0 0 / 0.25);
 }
-.label-col p { margin: 0 0 20px; max-width: 28ch; color: #1d241c; font-size: 1.05rem; }
+.label-col p { margin: 0 0 20px; max-width: 28ch; color: var(--on-wall); font-size: 1.05rem; }
 .ext { display: flex; gap: 10px; flex-wrap: wrap; }
 
 /* Páginas de lectura: papel continuo con perforaciones. */
@@ -187,11 +203,11 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   font: 700 2rem/0.95 var(--label);
   text-transform: uppercase;
   text-decoration: none;
-  color: #f1ecd9;
+  color: var(--brand);
   text-shadow: 0 2px 0 rgb(0 0 0 / 0.25);
 }
-.rail .serial { margin: 0; font: 1.3rem var(--retro); letter-spacing: 0.18em; color: #1d241c; }
-.rail nav, .rail .ext { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.rail nav { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.rail .ext { display: grid; grid-template-columns: 1fr; gap: 10px; padding-top: 14px; border-top: 1px solid rgb(0 0 0 / 0.25); }
 
 .paper {
   background:
@@ -201,6 +217,13 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   padding: 40px clamp(48px, 7vw, 84px) 56px;
   box-shadow: 0 10px 22px rgb(0 0 0 / 0.25);
   min-height: 70vh;
+}
+
+/* La hoja sale de la impresora: revelado por pasos, una vez por página. */
+.paper { animation: print 0.9s steps(18, end) both; }
+@keyframes print {
+  from { clip-path: inset(0 0 100% 0); transform: translateY(-14px); }
+  to { clip-path: inset(0 0 0 0); transform: translateY(0); }
 }
 
 main { padding: 0; }
@@ -253,8 +276,8 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
   .shell { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .rail { position: static; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px; }
   .rail .brand { font-size: 1.6rem; flex: 1 0 100%; }
-  .rail .serial { display: none; }
-  .rail nav, .rail .ext { flex-direction: row; flex-wrap: wrap; }
+  .rail nav { flex-direction: row; flex-wrap: wrap; }
+  .rail .ext { display: flex; flex-wrap: wrap; padding-top: 0; border-top: 0; }
   .paper {
     padding: 24px 36px 40px;
     background:
@@ -270,4 +293,5 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
   .screen [data-step] { animation: none; opacity: 1; }
   .cursor { animation: none; }
   .key { transition: none; }
+  .paper { animation: none; }
 }

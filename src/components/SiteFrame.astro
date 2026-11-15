@@ -6,15 +6,13 @@ const current = (href: string) =>
 <div class="shell">
   <aside class="rail">
     <a class="brand" href="/">Rodrigo<br />Villalba</a>
-    <p class="serial" aria-hidden="true">4 8 15 16 23 42</p>
     <nav aria-label="Principal">
       <a class="key dark" href="/">Home</a>
       <a class="key" href="/about" aria-current={current("/about") ? "page" : undefined}>About</a>
       <a class="key" href="/blog" aria-current={current("/blog") ? "page" : undefined}>Blog</a>
     </nav>
-    <div class="ext">
+    <div class="ext" aria-label="Perfiles">
       <a class="key dark" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
-      <a class="key dark" href="https://twitter.com/rodrigoj_el" rel="noopener">Twitter</a>
       <a class="key dark" href="https://www.linkedin.com/in/rodrigo-jos%C3%A9-villalba-otto-0b313618/" rel="noopener">LinkedIn</a>
     </div>
   </aside>
