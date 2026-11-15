@@ -1,8 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
+import CvKeys from "../components/CvKeys.astro";
 
+const digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 const rows = [
-  ["ESC", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", "-", "RESET"],
   ["CTRL", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "REPT"],
   ["A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "RETURN"],
 ];
@@ -28,11 +29,18 @@ const questions = [
               </p>
             </div>
           ))}
-          <p class="q" data-step style="--i:11">&gt;<span class="cursor">█</span></p>
+          <p class="q" data-step style="--i:11">&gt; <span id="entry"></span><span class="cursor">█</span></p>
+          <p class="thanks" id="thanks" data-step style="--i:13" hidden>Thank you. You may sleep now.</p>
         </div>
+        <p class="sr-only" id="status" role="status"></p>
         <div class="plate" aria-hidden="true"><span>SWAN</span></div>
       </div>
       <div class="keyboard">
+        <div class="numrow">
+          <i class="esc" aria-hidden="true">ESC</i>
+          {digits.map((d) => <button type="button" class="key" data-digit={d} aria-label={`Digit ${d}`}>{d}</button>)}
+          <button type="button" class="key del" id="del" aria-label="Delete last digit">DEL</button>
+        </div>
         <div class="deco-rows" aria-hidden="true">
           <div class="keys deco">
             {rows.map((row) => <div class="deco-row">{row.map((k) => <i>{k}</i>)}</div>)}
@@ -53,20 +61,80 @@ const questions = [
       <div class="ext">
         <a class="key" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
         <a class="key" href="https://www.linkedin.com/in/rojv/" rel="noopener">LinkedIn</a>
+        <CvKeys />
       </div>
     </div>
   </div>
 </Base>
 
 <script>
-  // EXECUTE repite la carga de las respuestas.
+  const SEQUENCE = "4815162342";
   const screen = document.getElementById("screen")!;
-  document.getElementById("execute")!.addEventListener("click", () => {
+  const entry = document.getElementById("entry")!;
+  const thanks = document.getElementById("thanks")!;
+  const postit = document.querySelector<HTMLElement>(".postit")!;
+  const status = document.getElementById("status")!;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let busy = false;
+
+  // Reinicia las animaciones de carga de la pantalla.
+  function replay() {
     screen.querySelectorAll<HTMLElement>("[data-step]").forEach((el) => {
       el.style.animation = "none";
       void el.offsetWidth;
       el.style.animation = "";
     });
+  }
+
+  function type(digit: string) {
+    if (busy || entry.textContent!.length >= SEQUENCE.length) return;
+    entry.textContent += digit;
+  }
+
+  function erase() {
+    if (!busy) entry.textContent = entry.textContent!.slice(0, -1);
+  }
+
+  function reboot() {
+    busy = true;
+    entry.textContent = "";
+    status.textContent = "Station reset.";
+    if (!reduced) {
+      screen.classList.add("off");
+      postit.classList.add("peel");
+    }
+    setTimeout(() => {
+      screen.classList.remove("off");
+      postit.classList.remove("peel");
+      thanks.hidden = false;
+      replay();
+      busy = false;
+    }, reduced ? 0 : 1600);
+  }
+
+  function execute() {
+    if (busy) return;
+    const typed = entry.textContent!;
+    if (typed === SEQUENCE) return reboot();
+    // Un código incorrecto solo se borra; el sitio no reacciona.
+    entry.textContent = "";
+    thanks.hidden = true;
+    replay();
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-digit]").forEach((key) =>
+    key.addEventListener("click", () => type(key.dataset.digit!)),
+  );
+  document.getElementById("del")!.addEventListener("click", erase);
+  document.getElementById("execute")!.addEventListener("click", execute);
+
+  // Teclado físico, solo cuando el foco no está en un control.
+  document.addEventListener("keydown", (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const onBody = document.activeElement === document.body;
+    if (/^[0-9]$/.test(e.key)) type(e.key);
+    else if (e.key === "Backspace") erase();
+    else if (e.key === "Enter" && onBody) execute();
   });
 </script>
 
