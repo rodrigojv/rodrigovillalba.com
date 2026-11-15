@@ -5,7 +5,7 @@ const current = (href: string) =>
 ---
 <div class="shell">
   <aside class="rail">
-    <a class="brand" href="/">Rodrigo<br />Villalba</a>
+    <a class="brand" href="/">Rodrigo <br />Villalba</a>
     <div class="tray">
       <nav aria-label="Principal">
         <a class="key" href="/">Home</a>
@@ -20,4 +20,8 @@ const current = (href: string) =>
     </div>
   </aside>
   <div class="paper"><slot /></div>
+  <p class="ext-foot">
+    <a href="https://github.com/rodrigojv" rel="noopener">GitHub ↗</a>
+    <a href="https://www.linkedin.com/in/rojv/" rel="noopener">LinkedIn ↗</a>
+  </p>
 </div>
