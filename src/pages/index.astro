@@ -108,33 +108,46 @@ const questions = [
     osc.stop(t + dur + 0.02);
   }
   // Clic de teclado grabado (DRAGON-STUDIO, Pixabay). Se decodifica tras el primer gesto.
-  let keyBuffer: AudioBuffer | undefined;
-  async function loadKey() {
+  const buffers: Record<string, AudioBuffer> = {};
+  async function loadSounds() {
     try {
       ctx ??= new AudioContext();
-      const res = await fetch("/sounds/key.mp3");
-      keyBuffer = await ctx.decodeAudioData(await res.arrayBuffer());
+      for (const name of ["key", "cursor-beep"]) {
+        const res = await fetch(`/sounds/${name}.mp3`);
+        buffers[name] = await ctx.decodeAudioData(await res.arrayBuffer());
+      }
     } catch {}
   }
-  for (const ev of ["pointerdown", "keydown"]) document.addEventListener(ev, loadKey, { once: true });
+  for (const ev of ["pointerdown", "keydown"]) document.addEventListener(ev, loadSounds, { once: true });
 
-  function keyClick() {
-    if (!soundOn) return;
-    if (!ctx || !keyBuffer) return tone(1900 + Math.random() * 300, 0, 0.025, "square", 0.05);
+  function play(name: string, rate = 1, gain = 0.8) {
+    if (!ctx || !buffers[name]) return false;
     void ctx.resume();
     const src = ctx.createBufferSource();
     const amp = ctx.createGain();
-    src.buffer = keyBuffer;
-    src.playbackRate.value = 0.96 + Math.random() * 0.1;
-    amp.gain.value = 0.8;
+    src.buffer = buffers[name];
+    src.playbackRate.value = rate;
+    amp.gain.value = gain;
     src.connect(amp).connect(ctx.destination);
     src.start();
+    return true;
+  }
+
+  function keyClick() {
+    if (!soundOn) return;
+    if (!play("key", 0.96 + Math.random() * 0.1)) tone(1900 + Math.random() * 300, 0, 0.025, "square", 0.05);
+  }
+
+  // Pitido del cursor: solo suena si el navegador ya permitió audio (hubo un gesto).
+  function cursorBeep() {
+    if (!soundOn || ctx?.state !== "running") return;
+    if (!play("cursor-beep", 1, 0.7)) tone(1000, 0, 0.1, "square", 0.1);
   }
 
   const sfx = {
     key: keyClick,
     tick: () => tone(1200, 0, 0.012, "square", 0.025),
-    beep: () => tone(1000, 0, 0.1, "square", 0.1),
+    beep: () => { if (!play("cursor-beep", 1, 0.7)) tone(1000, 0, 0.1, "square", 0.1); },
     buzz: () => tone(140, 0, 0.28, "sawtooth", 0.12, 90),
     powerDown: () => tone(700, 0, 0.9, "sawtooth", 0.08, 40),
     ready: () => { tone(660, 0, 0.09); tone(880, 0.1, 0.09); tone(1320, 0.2, 0.16); },
@@ -163,12 +176,16 @@ const questions = [
   let clockTimer = 0;
   const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
+  let cursorTimer = 0;
   function replay() {
     consoleEl.querySelectorAll<HTMLElement>("[data-step]").forEach((el) => {
       el.style.animation = "none";
       void el.offsetWidth;
       el.style.animation = "";
     });
+    // La línea del cursor aparece en el paso 11 (0.45 s por paso).
+    clearTimeout(cursorTimer);
+    cursorTimer = window.setTimeout(cursorBeep, 11 * 450 + 50);
   }
 
   function startClock() {

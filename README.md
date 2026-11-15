@@ -12,4 +12,4 @@ Los CV (EN y ES) salen de `../resume`: `scripts/build-cv.sh` los regenera en `pu
 
 ## Créditos
 
-Clic de teclado: `public/sounds/key.mp3`, "Single Key Press" de DRAGON-STUDIO en Pixabay, bajo la Pixabay Content License. Los demás sonidos de la home se sintetizan con Web Audio.
+Clic de teclado: `public/sounds/key.mp3`, "Single Key Press" de DRAGON-STUDIO en Pixabay, bajo la Pixabay Content License. Pitido del cursor: `public/sounds/cursor-beep.mp3`, recortado de `public/sounds/beep.mp3`. Los demás sonidos de la home se sintetizan con Web Audio.
