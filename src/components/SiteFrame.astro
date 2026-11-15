@@ -1,0 +1,23 @@
+---
+const path = Astro.url.pathname;
+const links = [
+  { href: "/about", label: "about" },
+  { href: "/blog", label: "blog" },
+];
+const current = (href: string) => path === href || path.startsWith(`${href}/`) || (href === "/blog" && path.startsWith("/post/"));
+---
+<div class="frame">
+  <header class="frame-bar">
+    <a class="prompt" href="/">rodrigo@swan:~$</a>
+    <div class="numbers" aria-hidden="true"><span>4</span><span>8</span><span>15</span><span>16</span><span>23</span><span>42</span></div>
+  </header>
+  <nav class="frame-nav" aria-label="Principal">
+    {links.map((l) => <a href={l.href} aria-current={current(l.href) ? "page" : undefined}>{l.label}</a>)}
+  </nav>
+  <slot />
+  <footer class="frame-footer">
+    <a href="https://github.com/rodrigojv" rel="noopener">github</a>
+    <a href="https://twitter.com/rodrigoj_el" rel="noopener">twitter</a>
+    <a href="https://www.linkedin.com/in/rodrigo-jos%C3%A9-villalba-otto-0b313618/" rel="noopener">linkedin</a>
+  </footer>
+</div>

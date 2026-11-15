@@ -1,5 +1,6 @@
 ---
 import { render } from "astro:content";
+import SiteFrame from "../../components/SiteFrame.astro";
 import Base from "../../layouts/Base.astro";
 import { getPostsByDate, formatDate, readingMinutes, imagePath } from "../../utils/posts";
 
@@ -27,9 +28,9 @@ const jsonLd = {
 };
 ---
 <Base title={`${title} · Rodrigo Villalba`} description={summary} type="article" publishedTime={date} image={image} jsonLd={jsonLd}>
-  <article>
+  <SiteFrame><main><article>
     <h1>{title}</h1>
     <p class="meta">PUBLISHED {formatDate(date)} · {readingMinutes(post.body)} MIN · {tags.join(", ")}</p>
-    <Content />
-  </article>
+    <div class="prose"><Content /></div>
+  </article></main></SiteFrame>
 </Base>

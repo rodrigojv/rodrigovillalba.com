@@ -1,0 +1,132 @@
+:root {
+  --bg: #070a08;
+  --fg: #b6f5c2;
+  --fg-dim: #6f9c7a;
+  --accent: #e7ff6a;
+  --alert: #ff5a36;
+  --code-bg: #0c120e;
+  --line: #1c3a24;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --serif: "Newsreader Variable", Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--bg); }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at center, #0b120d 55%, var(--bg) 100%);
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Scanlines y viñeta detrás del contenido, sin capturar eventos. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, rgb(0 0 0 / 0.06) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 60%, rgb(0 0 0 / 0.55) 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.frame {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.frame-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.prompt { color: var(--accent); text-decoration: none; white-space: nowrap; }
+
+.numbers {
+  display: flex;
+  gap: 1.1em;
+  color: var(--accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  white-space: nowrap;
+  overflow-x: auto;
+  min-width: 0;
+}
+
+.frame-nav { display: flex; gap: 16px; padding: 12px 0; color: var(--fg-dim); }
+.frame-nav a { text-decoration: none; }
+.frame-nav a[aria-current="page"] { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); }
+
+main { padding-top: 24px; }
+h1, h2, h3 { font-weight: 600; line-height: 1.25; }
+h1 { font-size: 1.6rem; margin: 0 0 8px; }
+
+.frame-footer {
+  display: flex;
+  gap: 20px;
+  margin-top: 64px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--fg-dim);
+}
+.frame-footer a { text-decoration: none; }
+.frame-footer a::before { content: "> "; color: var(--accent); }
+
+/* Blog: cada post es una línea de log. */
+.post-list { list-style: none; margin: 24px 0; padding: 0; }
+.post-list li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.post-list a { display: block; text-decoration: none; }
+.post-list .meta { display: block; color: var(--fg-dim); font-size: 0.85rem; }
+.post-list .title { display: block; font-family: var(--serif); font-size: 1.3rem; margin-top: 2px; }
+.post-list a:hover .title { text-decoration: underline; text-decoration-color: var(--accent); }
+.post-list .summary { margin: 6px 0 0; color: var(--fg-dim); font-size: 0.9rem; }
+.post-list .tags { margin: 6px 0 0; display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.8rem; color: var(--fg-dim); }
+
+/* Artículo: serif y medida cómoda, la carcasa sigue siendo mono. */
+article .meta { color: var(--fg-dim); font-size: 0.85rem; text-transform: uppercase; margin: 0 0 24px; }
+article h1 { font-family: var(--serif); font-size: 2.2rem; }
+.prose { font-family: var(--serif); font-size: 1.2rem; line-height: 1.6; max-width: 68ch; }
+.prose h2, .prose h3 { font-family: var(--serif); margin-top: 2em; }
+.prose img { max-width: 100%; height: auto; }
+.prose blockquote { margin: 1.5em 0; padding-left: 1em; border-left: 3px solid var(--accent); color: var(--fg-dim); }
+.prose code { font-family: var(--mono); font-size: 0.85em; background: var(--code-bg); padding: 0.1em 0.35em; }
+.prose pre {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  background: var(--code-bg) !important;
+  border: 1px solid var(--line);
+  padding: 14px 16px;
+  overflow-x: auto;
+}
+.prose pre code { background: none; padding: 0; }
+
+.cv-block { display: flex; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 700px) {
+  body { font-size: 15px; }
+  .frame-bar { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .numbers { width: 100%; }
+  .prose { font-size: 1.125rem; }
+  article h1 { font-size: 1.7rem; }
+}

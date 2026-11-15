@@ -1,6 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
+import SiteFrame from "../components/SiteFrame.astro";
 ---
 <Base title="404 · Rodrigo Villalba">
-  <main><h1>404</h1><p><a href="/">Volver al inicio</a></p></main>
+  <SiteFrame>
+    <main>
+      <h1>404</h1>
+      <p>command not found. <a href="/">Volver al inicio</a></p>
+    </main>
+  </SiteFrame>
 </Base>

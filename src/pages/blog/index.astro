@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import SiteFrame from "../../components/SiteFrame.astro";
 import PostList from "../../components/PostList.astro";
 import { getPostsByDate } from "../../utils/posts";
 
@@ -8,7 +9,7 @@ const own = posts.filter((p) => !p.data.guest_post_url);
 const guest = posts.filter((p) => p.data.guest_post_url);
 ---
 <Base title="Blog · Rodrigo Villalba" description="Words and thoughts about software development, productivity and other wholesome topics">
-  <main>
+  <SiteFrame><main>
     <h1>Blog</h1>
     <p>Words and thoughts about software development, productivity and other wholesome topics</p>
     <PostList posts={own} />
@@ -18,5 +19,5 @@ const guest = posts.filter((p) => p.data.guest_post_url);
         <PostList posts={guest} />
       </section>
     )}
-  </main>
+  </main></SiteFrame>
 </Base>
