@@ -18,6 +18,7 @@ const questions = [
       <div class="monitor">
         <p class="postit" aria-hidden="true">4 8 15<br />16 23 42</p>
         <div class="screen" id="screen">
+          <div id="console">
           <p data-step style="--i:0">SWAN STATION · INITIALIZING WEB SITE</p>
           {questions.map((item, n) => (
             <div class="q">
@@ -29,10 +30,11 @@ const questions = [
             </div>
           ))}
           <p class="q" data-step style="--i:11">&gt; <span id="entry"></span><span class="cursor">█</span></p>
-          <p class="thanks" id="thanks" data-step style="--i:13" hidden>Thank you. You may sleep now.</p>
+          </div>
+          <div class="film" id="film" hidden></div>
         </div>
         <p class="sr-only" id="status" role="status"></p>
-        <div class="plate" aria-hidden="true"><span>SWAN</span></div>
+        <div class="plate" aria-hidden="true"><span>SWAN</span><span class="clock" id="clock" hidden>108:00</span></div>
       </div>
       <div class="keyboard">
         <div class="numrow">
@@ -68,21 +70,102 @@ const questions = [
 
 <script>
   const SEQUENCE = "4815162342";
+  const MINUTES = 108;
+  const FILM: { text: string; link?: { label: string; href: string } }[] = [
+    { text: "ORIENTATION FILM · SWAN STATION" },
+    { text: "Hello, and thank you for visiting." },
+    { text: "My name is Rodrigo. I have been building software for over 16 years." },
+    { text: "Someone typed the numbers. That was the right call." },
+    { text: "Please observe the following protocol:" },
+    { text: "1. Every 108 minutes, ship something small." },
+    { text: "2. Never merge without tests." },
+    { text: "3. Let the tests, not the agent, decide what ships." },
+    { text: "4. In case of doubt, read the CV.", link: { label: "Open CV", href: "/cv" } },
+    { text: "Namaste. See you in 108 minutes." },
+  ];
+
   const screen = document.getElementById("screen")!;
+  const consoleEl = document.getElementById("console")!;
+  const film = document.getElementById("film")!;
   const entry = document.getElementById("entry")!;
-  const thanks = document.getElementById("thanks")!;
+  const clock = document.getElementById("clock")!;
   const postit = document.querySelector<HTMLElement>(".postit")!;
   const status = document.getElementById("status")!;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let busy = false;
 
-  // Reinicia las animaciones de carga de la pantalla.
+  let busy = false;
+  let inFilm = false;
+  let skip = false;
+  let clockEnd = 0;
+  let clockTimer = 0;
+  const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
   function replay() {
-    screen.querySelectorAll<HTMLElement>("[data-step]").forEach((el) => {
+    consoleEl.querySelectorAll<HTMLElement>("[data-step]").forEach((el) => {
       el.style.animation = "none";
       void el.offsetWidth;
       el.style.animation = "";
     });
+  }
+
+  function startClock() {
+    clearInterval(clockTimer);
+    clockEnd = Date.now() + MINUTES * 60_000;
+    clock.hidden = false;
+    const tick = () => {
+      const left = Math.max(0, Math.round((clockEnd - Date.now()) / 1000));
+      clock.textContent = `${String(Math.floor(left / 60)).padStart(2, "0")}:${String(left % 60).padStart(2, "0")}`;
+    };
+    tick();
+    clockTimer = window.setInterval(tick, 1000);
+  }
+
+  async function playFilm() {
+    busy = true;
+    skip = false;
+    status.textContent = "Orientation film started.";
+    entry.textContent = "";
+    if (!reduced) {
+      screen.classList.add("off");
+      postit.classList.add("peel");
+      await wait(1000);
+      screen.classList.remove("off");
+    }
+    consoleEl.hidden = true;
+    film.hidden = false;
+    film.replaceChildren();
+    startClock();
+    for (const line of FILM) {
+      const p = document.createElement("p");
+      film.append(p);
+      if (reduced || skip) p.textContent = line.text;
+      else {
+        for (const ch of line.text) {
+          p.textContent += ch;
+          if (!skip) await wait(ch === "." || ch === "," ? 140 : 22);
+        }
+      }
+      if (line.link) {
+        const a = document.createElement("a");
+        a.href = line.link.href;
+        a.textContent = line.link.label;
+        p.append(" ", a);
+      }
+      if (!reduced && !skip) await wait(420);
+    }
+    const hint = document.createElement("p");
+    hint.className = "hint";
+    hint.textContent = "Press EXECUTE to return.";
+    film.append(hint);
+    inFilm = true;
+    busy = false;
+  }
+
+  function leaveFilm() {
+    film.hidden = true;
+    consoleEl.hidden = false;
+    inFilm = false;
+    replay();
   }
 
   function type(digit: string) {
@@ -94,32 +177,18 @@ const questions = [
     if (!busy) entry.textContent = entry.textContent!.slice(0, -1);
   }
 
-  function reboot() {
-    busy = true;
-    entry.textContent = "";
-    status.textContent = "Station reset.";
-    if (!reduced) {
-      screen.classList.add("off");
-      postit.classList.add("peel");
-    }
-    setTimeout(() => {
-      screen.classList.remove("off");
-      postit.classList.remove("peel");
-      thanks.hidden = false;
-      replay();
-      busy = false;
-    }, reduced ? 0 : 1600);
-  }
-
   function execute() {
     if (busy) return;
     const typed = entry.textContent!;
-    if (typed === SEQUENCE) return reboot();
-    // Un código incorrecto solo se borra; el sitio no reacciona.
+    if (typed === SEQUENCE) return void playFilm();
     entry.textContent = "";
-    thanks.hidden = true;
-    replay();
+    // Un código incorrecto solo se borra; el sitio no reacciona.
+    if (inFilm) leaveFilm();
+    else replay();
   }
+
+  // Tocar la pantalla mientras se escribe salta la animación.
+  screen.addEventListener("click", () => { if (busy) skip = true; });
 
   document.querySelectorAll<HTMLElement>("[data-digit]").forEach((key) =>
     key.addEventListener("click", () => type(key.dataset.digit!)),

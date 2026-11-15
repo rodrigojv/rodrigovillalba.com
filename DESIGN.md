@@ -24,4 +24,4 @@ La estación de trabajo de Swan vista de frente: monitor y teclado beige (plást
 Las líneas de la pantalla aparecen en secuencia una vez al cargar. El cursor parpadea. Las teclas se hunden al pulsarlas. Todo se apaga con `prefers-reduced-motion`.
 
 ## Límites
-Sin marcas ni logotipos de Apple ni de Dharma. Sin sonido, sin cuenta atrás, sin "system failure".
+Sin marcas ni logotipos de Apple ni de Dharma. Sin sonido ni "system failure". El reloj de 108 minutos solo aparece tras el easter egg y no provoca nada al llegar a cero.
