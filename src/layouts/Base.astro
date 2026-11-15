@@ -28,12 +28,6 @@ const ogImage = image && new URL(image, Astro.site);
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <script is:inline>
-      try {
-        var p = new URLSearchParams(location.search).get("palette") || sessionStorage.getItem("palette");
-        if (p) { sessionStorage.setItem("palette", p); document.documentElement.dataset.palette = p; }
-      } catch (e) {}
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />

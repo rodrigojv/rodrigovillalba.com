@@ -6,7 +6,6 @@
   --plastic: #d9d0b7;
   --plastic-shade: #b8ae94;
   --keycap: #ebe4cf;
-  --key-dark: #34322d;
   --paper: #f6f2e4;
   --paper-band: #e6efdc;
   --ink: #1d1b17;
@@ -23,18 +22,6 @@
   --label: "Barlow Condensed", "Arial Narrow", sans-serif;
   --text: "Literata Variable", Georgia, serif;
   --code: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-
-/* Paletas alternativas: ?palette=pizarra | concreto | oliva */
-:root[data-palette="pizarra"] {
-  --wall: #3f566a; --wall-dark: #2d3f50;
-  --on-wall: #e9e4d2; --brand: #f1ecd9;
-  --key-dark: #2a2926; --active: #e0902a; --on-active: #1d1b17;
-}
-:root[data-palette="concreto"] {
-  --wall: #b7b1a2; --wall-dark: #9a9484;
-  --on-wall: #1f1d18; --brand: #1f1d18;
-  --key-dark: #2f2e2a; --active: #c9501f; --on-active: #f6e9d8;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
