@@ -1,8 +1,8 @@
 /* Estación de trabajo de Swan: pared institucional, plástico beige, pantalla de fósforo.
    El fósforo verde vive solo dentro de la pantalla; el contenido largo se lee en papel continuo. */
 :root {
-  --wall: #8a9c86;
-  --wall-dark: #6f826c;
+  --wall: #26302a;
+  --wall-dark: #161c18;
   --plastic: #d9d0b7;
   --plastic-shade: #b8ae94;
   --keycap: #ebe4cf;
@@ -31,7 +31,13 @@ html { background: var(--wall); }
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(to bottom, var(--wall) 0, var(--wall) 70%, var(--wall-dark) 100%);
+  /* Paneles de sala de control: rejilla tenue y viñeta. */
+  background:
+    linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
+    radial-gradient(ellipse at 40% 20%, transparent 40%, rgb(0 0 0 / 0.35) 100%),
+    var(--wall);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--text);
   font-size: 1rem;
@@ -245,23 +251,13 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   color: var(--brand);
   text-shadow: 0 2px 0 rgb(0 0 0 / 0.25);
 }
-/* Cinta de rotuladora: el texto oscuro sobre el verde se veía turbio. Cada línea es una tira. */
 .label-col p {
   margin: 0;
   max-width: 30ch;
-  font: 600 1rem/2.1 var(--label);
-  letter-spacing: 0.1em;
+  color: #d4cfb8;
+  font: 600 1.05rem/1.7 var(--label);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-.label-col p span {
-  padding: 3px 10px;
-  border-radius: 2px;
-  background: #1d241c;
-  box-shadow: 0 2px 0 rgb(0 0 0 / 0.25);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  color: var(--brand);
-  text-shadow: 0 1px 0 rgb(0 0 0 / 0.6);
 }
 
 /* Páginas de lectura: papel continuo con perforaciones. */
@@ -372,7 +368,7 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
   .desk { padding-top: 32px; gap: 28px; }
   .label-col { order: -1; margin-top: 0; }
   .label-col h1 { font-size: 2.2rem; margin-bottom: 10px; }
-  .label-col p { font-size: 0.95rem; max-width: none; }
+  .label-col p { font-size: 1rem; max-width: none; }
   .deco-rows, .ext-key, .numrow .esc { display: none; }
   .bezel-btn { order: -1; }
   .plate span:first-child { margin-right: 0; }
