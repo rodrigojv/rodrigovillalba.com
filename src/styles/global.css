@@ -31,10 +31,9 @@ html { background: var(--wall); }
 body {
   margin: 0;
   min-height: 100vh;
-  /* Paneles de sala de control: rejilla tenue y viñeta. */
+  /* Grano de pared de búnker (ruido SVG) y viñeta; sin líneas ni patrones visibles. */
   background:
-    linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
-    linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px) 0 0 / 64px 64px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
     radial-gradient(ellipse at 40% 20%, transparent 40%, rgb(0 0 0 / 0.35) 100%),
     var(--wall);
   background-attachment: fixed;
