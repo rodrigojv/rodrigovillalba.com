@@ -356,7 +356,9 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
   .label-col { order: -1; margin-top: 0; }
   .label-col h1 { font-size: 2.2rem; margin-bottom: 10px; }
   .label-col p { font-size: 1rem; max-width: none; }
-  .deco-rows { display: none; }
+  .deco-rows, .ext-key, .numrow .esc { display: none; }
+  .bezel-btn { order: -1; }
+  .plate span:first-child { margin-right: 0; }
   .numrow { flex-wrap: wrap; }
   .numrow .key { flex: 1 0 15%; min-height: 2.6rem; }
   .numrow .del { flex: 1 0 15%; }
