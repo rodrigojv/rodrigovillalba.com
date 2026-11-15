@@ -38,7 +38,7 @@ const questions = [
       </div>
       <div class="keyboard">
         <div class="numrow">
-          <i class="esc" aria-hidden="true">ESC</i>
+          <button type="button" class="key snd" id="sound" aria-pressed="true" aria-label="Sound">Sound</button>
           {digits.map((d) => <button type="button" class="key" data-digit={d} aria-label={`Digit ${d}`}>{d}</button>)}
           <button type="button" class="key del" id="del" aria-label="Delete last digit">DEL</button>
         </div>
@@ -53,7 +53,6 @@ const questions = [
           <a class="key" href="/cv">CV</a>
           <a class="key" href="https://github.com/rodrigojv" rel="noopener">GitHub</a>
           <a class="key" href="https://www.linkedin.com/in/rojv/" rel="noopener">LinkedIn</a>
-          <button type="button" class="key" id="sound" aria-pressed="true" aria-label="Sound">Sound</button>
           <button type="button" class="key execute" id="execute">Execute</button>
         </div>
       </div>

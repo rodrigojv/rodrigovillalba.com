@@ -197,6 +197,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .numrow .key, .numrow i { flex: 1; min-width: 0; min-height: 2.1rem; padding: 0; justify-content: center; font-size: 1rem; }
 .numrow i { border-radius: 4px; background: #cdc3a6; box-shadow: 0 2px 0 var(--plastic-shade); color: var(--ink-dim); font: 600 0.8rem/2.1rem var(--label); text-align: center; font-style: normal; }
 .numrow .del { flex: 1.6; }
+.numrow .snd { flex: 2; font-size: 0.85rem; }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 /* Reinicio de la estación (easter egg). */
@@ -340,7 +341,6 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
   .label-col p { font-size: 1rem; max-width: none; }
   .deco-rows { display: none; }
   .numrow { flex-wrap: wrap; }
-  .numrow .esc { display: none; }
   .numrow .key { flex: 1 0 15%; min-height: 2.6rem; }
   .numrow .del { flex: 1 0 15%; }
   .postit { top: auto; bottom: -16px; right: 14px; padding: 8px 12px; font-size: 1.2rem; }
