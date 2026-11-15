@@ -8,4 +8,4 @@ npm run build    # genera dist/
 npx wrangler deploy   # publica dist/ en Cloudflare Workers
 ```
 
-El CV se sirve desde `public/cv/rodrigo-villalba.pdf`. Mientras el archivo no exista, no se enlaza.
+Los CV (EN y ES) salen de `../resume`: `scripts/build-cv.sh` los regenera en `public/cv/` (requiere pandoc y Chrome).

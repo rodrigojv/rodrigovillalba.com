@@ -1,6 +1,4 @@
-import { existsSync } from "node:fs";
-
-export const CV_PATH = "/cv/rodrigo-villalba.pdf";
-
-// El PDF no vive en el repo hasta que Rodrigo lo suba; sin archivo no se enlaza.
-export const cvAvailable = existsSync(`public${CV_PATH}`);
+export const CV_FILES = [
+  { lang: "en", label: "English", path: "/cv/rodrigo-villalba-en.pdf" },
+  { lang: "es", label: "Español", path: "/cv/rodrigo-villalba-es.pdf" },
+] as const;
