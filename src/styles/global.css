@@ -228,8 +228,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   color: var(--brand);
   text-shadow: 0 2px 0 rgb(0 0 0 / 0.25);
 }
-.label-col p { margin: 0 0 20px; max-width: 28ch; color: var(--on-wall); font-size: 1.05rem; }
-.ext { display: flex; gap: 10px; flex-wrap: wrap; }
+.label-col p { margin: 0; max-width: 28ch; color: var(--on-wall); font-size: 1.05rem; }
 
 /* Páginas de lectura: papel continuo con perforaciones. */
 .shell {
@@ -336,7 +335,10 @@ h3 { font-size: 1.5rem; margin: 1.4em 0 0.3em; }
 
 @media (max-width: 800px) {
   .desk { grid-template-columns: minmax(0, 1fr); min-height: 0; align-items: start; }
-  .label-col { order: -1; }
+  .desk { padding-top: 12px; gap: 16px; }
+  .label-col { order: -1; margin-top: 0; }
+  .label-col h1 { font-size: 2.2rem; margin-bottom: 6px; }
+  .label-col p { font-size: 1rem; max-width: none; }
   .deco-rows { display: none; }
   .numrow { flex-wrap: wrap; }
   .numrow .esc { display: none; }
