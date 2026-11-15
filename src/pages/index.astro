@@ -34,11 +34,15 @@ const questions = [
           <div class="film" id="film" hidden></div>
         </div>
         <p class="sr-only" id="status" role="status"></p>
-        <div class="plate" aria-hidden="true"><span>SWAN</span><span class="clock" id="clock" hidden>108:00</span></div>
+        <div class="plate">
+          <span aria-hidden="true">SWAN</span>
+          <span class="clock" id="clock" aria-hidden="true" hidden>108:00</span>
+          <button type="button" class="bezel-btn" id="sound" aria-pressed="true" aria-label="Sound"><span class="led"></span>Sound</button>
+        </div>
       </div>
       <div class="keyboard">
         <div class="numrow">
-          <button type="button" class="key snd" id="sound" aria-pressed="true" aria-label="Sound">Sound</button>
+          <i class="esc" aria-hidden="true">ESC</i>
           {digits.map((d) => <button type="button" class="key" data-digit={d} aria-label={`Digit ${d}`}>{d}</button>)}
           <button type="button" class="key del" id="del" aria-label="Delete last digit">DEL</button>
         </div>
